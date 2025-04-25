@@ -1,7 +1,6 @@
-include ./blocks/main-page__nav
-include ./blocks/header
 include ./blocks/welcome
 include ./blocks/services
+include ./blocks/about
 include ./blocks/gallery
 include ./blocks/feedback
 include ./blocks/footer
@@ -25,11 +24,10 @@ html(lang="ru")
   
 body  
     .page    
-        //+mainNav
-        //+header 
-        //+welcome
-        //+services
-        //+gallery
+        +welcome
+        +services
+        +about
+        +gallery
         +feedback
-        //+footer
+        +footer
 script(src="./js-bundle/main.bundle.js")

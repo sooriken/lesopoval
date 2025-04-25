@@ -1,0 +1,168 @@
+include ../blocks/servicesNav
+include ../blocks/footer
+include ../blocks/servicePopup
+
+doctype html
+html(lang="ru")
+    head
+        meta(charset="utf-8")    
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        title Gulp
+        // default css
+        link(rel="stylesheet" href="../../css-min/default.min.css")
+        // normalize css
+        link(rel="stylesheet" href="../../css-min/normalize.min.css")
+        // style css
+        link(rel="stylesheet" href="../../css-min/style.min.css")
+        // fonts
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet")
+  
+body  
+    .page
+        +servicesNav
+        .service    
+            .service__inner
+                .service-description
+                    //.service-description__title Обрезка деревьев
+                    .service-description__inner
+                        // табы для навигации
+                        .service-tabs
+                            .service-tab Спил целиком
+                            .service-tab Спил частями
+                            .service-tab.service-tab--active Спил аварийных
+                            .service-tab Удаление рухнувших
+                        //блок "Спил аварийных"
+                        .service-block.service-block--active(id="serviceEmergency")
+                            .service-block__arrow.service-block__arrow--up
+                            //первый кейс
+                            .service-block__wrapper
+                                // блок картинок для десктоп
+                                .service-block__image-inner
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/first/1.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/first/2.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/first/3.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../src/images/service/cutting/emergency/first/4.jpeg")
+                                // текстовый блок
+                                .service-block__inner
+                                    .service-block__name Удаление аварийной, вывернутой с корня крупной березы, застрявшей прямо над крышей дома соседей. Была удалена без повреждения имущества.
+                                    .service-block__description-inner
+                                        .service-block__description Наши специалисты оперативно ликвидировали сложный случай — <strong>крупную березу, вывернутую с корнями ураганом</strong>, которая зависла над крышей жилого дома. Дерево находилось в крайне неустойчивом положении: его падение могло повредить кровлю, электропроводку и припаркованные автомобили. Мы:
+                                        .service-block__description <strong>- Разработали поэтапный план</strong> с учетом рисков;
+                                        .service-block__description <strong>- Применили метод контролируемого спиливания</strong> с завешиванием ветвей;
+                                        .service-block__description <strong>- Использовали автовышку и альпинистское оборудование </strong> для точной работы;
+                                        .service-block__description <strong>- Аккуратно утилизировали ствол и ветви </strong> без повреждения имущества.
+                                        .service-block__description <strong>Стоимость:</strong> X руб. (включена аренда спецтехники и утилизация)
+                                        .service-block__description <strong>Затраченное время:</strong> Y часов (с учетом сложного доступа)
+                                        .service-block__description <strong>Итог:</strong> Дерево удалено безопасно, соседские постройки сохранены.
+                                    .service-block__button-inner
+                                        a.service-block__button.button(href="#") заказать услугу
+                                // блок картинок для мобильных устройст
+                                .service-block__image-inner.service-block__image-inner--mobile.inactive 
+                                    .service-block__image.service-block__image--mobile
+                                        img.service-block__img.service-block__img--mobile(src="../images-min/service/cutting/emergency/first/1.jpeg")
+                                    .service-block__image.service-block__image--mobile
+                                        img.service-block__img.service-block__img--mobile(src="../images-min/service/cutting/emergency/first/2.jpeg")
+                                    .service-block__image.service-block__image--mobile
+                                        img.service-block__img.service-block__img--mobile(src="../images-min/service/cutting/emergency/first/3.jpeg")
+                                    .service-block__image.service-block__image--mobile
+                                        img.service-block__img.service-block__img--mobile(src="../src/images/service/cutting/emergency/first/4.jpeg")
+                                    
+                            //второй кейс
+                            .service-block__wrapper.service-block__wrapper--active
+                                .service-block__image-inner
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/second/1.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/second/2.jpeg")
+                                .service-block__inner
+                                    .service-block__name Удаление аварийных деревьев в канаве, получивших уклон на строящийся дом после оборудования канавы в близи их корней.
+                                    .service-block__description-inner
+                                        .service-block__description Наши специалисты выполнили <strong>срочное удаление деревьев</strong>, которые стали опасными после работ по обустройству дренажной канавы. Корневая система была повреждена, что вызвало критический наклон стволов в сторону строящегося дома. Для решения проблемы мы:
+                                        .service-block__description <strong>- Провели экспертизу устойчивости</strong> каждого дерева;
+                                        .service-block__description <strong>- Применили комбинированную методику</strong> – спил частями с контролируемым опусканием ветвей;
+                                        .service-block__description <strong>- Использовали малую спецтехнику</strong> (из-за ограниченного пространства);
+                                        .service-block__description <strong>- Организовали параллельную вывозку древесины</strong> для ускорения процесса.
+                                        .service-block__description <strong>Стоимость:</strong> X руб. (с учетом сложного рельефа)
+                                        .service-block__description <strong>Затраченное время:</strong> Y часов (в режиме повышенной опасности)
+                                        .service-block__description <strong>Итог:</strong> Угроза устранена без повреждения стройплощадки, территория полностью расчищена.
+                                    .service-block__button-inner
+                                        a.service-block__button.button(href="#") заказать услугу
+                            //третий кейс
+                            .service-block__wrapper.service-block__wrapper--active
+                                .service-block__image-inner
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/third/1.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/third/2.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../images-min/service/cutting/emergency/third/3.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../src/images/service/cutting/emergency/third/4.jpeg")
+                                    .service-block__image
+                                        img.service-block__img(src="../src/images/service/cutting/emergency/third/5.jpeg")
+                                .service-block__inner
+                                    .service-block__name Ликвидация последствий шторма: удалены аварийные деревьев, повредившие забор и кровлю дома
+                                    .service-block__description-inner
+                                        .service-block__description После сильного шторма <strong>крупные деревья обрушились на частные владения</strong>, повредив забор и кровлю жилого дома. Наши специалисты оперативно:
+                                        .service-block__description <strong>- Оценили масштаб разрушений</strong> и риски дальнейшего обрушения;
+                                        .service-block__description <strong>- Аккуратно распилили стволы</strong> частями с контролируемым спуском (чтобы не усугубить повреждения);
+                                        .service-block__description <strong>- Демонтировали застрявшие в крыше ветви</strong> без дополнительного ущерба;
+                                        .service-block__description <strong>- Организовали вывоз древесины</strong> и очистку территории;
+                                        .service-block__description <strong>Стоимость:</strong> X руб. (включен срочный выезд и утилизация)
+                                        .service-block__description <strong>Затраченное время:</strong> Y часов (работы велись в режиме ЧС)
+                                        .service-block__description <strong>Итог:</strong> Угроза устранена, владельцы смогли начать ремонт повреждений.
+                                    .service-block__button-inner
+                                        a.service-block__button.button(href="#") заказать услугу
+                            .service-block__arrow.service-block__arrow--down.active
+                        //блок "Примеры работ"
+                        //.service-block.service-block--example(id="serviceExample")
+                            .service-block__inner
+                                .service-block__name Примеры работ, проведённых нашей компанией
+                                .service-block__images
+                                    .service-block__image
+                                        img.service-block__img(src="https://lipsum.app/id/15/1080x1920")
+                                    .service-block__image
+                                        img.service-block__img(src="https://lipsum.app/id/16/1080x1920")
+                                    .service-block__image
+                                        img.service-block__img(src="https://lipsum.app/id/17/1080x1920")
+                        //блок "Стоимость услуги"
+                        //.service-block(id="serviceCost")
+                            .service-block__image
+                                img.service-block__img(src="https://lipsum.app/id/11/1080x1920")
+                            .service-block__inner
+                                .service-block__name META 3 record label was founded by Shaky Lake and Baky Hike in 2020 business accelerator.
+                                .service-block__description-inner
+                                    .service-block__description Hac habitasse platea dictumst vestibulum rhoncus est. Sit amet dictum sit amet justo. Tortor aliquam nulla facilisi cras.
+                                    .service-block__description Maecenas ultricies mi eget mauris pharetra. Sit amet consectetur adipiscing elit ut aliquam purus. Porta nibh venenatis cras sed felis. Aenean vel elit scelerisque mauris pellentesque pulvinar. Et malesuada fames ac turpis egestas sed tempus. Enim sit amet venenatis urna cursus eget.
+                                    .service-block__description Maecenas ultricies mi eget mauris pharetra et ultrices. A condimentum vitae sapien pellentesque habitant morbi.
+                        //блок "Заказ"
+                        //.service-block.service-block--order(id="serviceOrder")
+                            .service-block__inner
+                                .service-block__name Заполните анкету и мы свяжемся с вами
+                                .service-block__form
+                                    .service-block__label Имя
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__form
+                                    .service-block__label Компания
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__form
+                                    .service-block__label Телефон
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__form
+                                    .service-block__label Почта
+                                    input.service-block__textform.textform(type="text")
+                                //.service-block__form
+                                    .service-block__label Услуга
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__button-inner
+                                    a.service-block__button.button(href="#") Сделать заказ
+                                
+        //+footer
+        +servicePopup  
+script(src="../js-bundle/service.bundle.js")

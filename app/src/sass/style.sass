@@ -10,197 +10,184 @@ $colorDark:  #333333
 $colorGold:  #FFD700 
 $colorBrown: #A0522D 
    
+.inactive
+    display: none
 //welcome block
 .welcome
-    min-height: 100vh
-    background-repeat: no-repeat
-    background-size: cover
-    background-position: center
-    background-image: url(../../images-min/welcome/welcome.png) 
-    display: flex
-    flex-direction: column
-    position: relative
     &__nav
-        padding: 16px 160px
-        display: flex
-        justify-content: space-between
-        font-weight: bold
-        text-transform: uppercase
         &-logo
-            width: 32px
-            height: 32px
-            background-color: $colorMain
-            border-radius: 50%
-        &-links
-            display: flex
+            //background-color: $colorMain
         &-link
-            margin-left: 32px
-            line-height: 32px
-            position: relative
             &::after
-                content: ""
-                display: block
-                width: 100%
-                height: 2px
                 background-color: $colorMain
-                position: absolute
-                left: 50%
-                transform: translateX(-50%)
-                bottom: 0px
-                width: 0
-                transition: .3s linear
-            &:hover::after
-                width: 100%
-    &__bg
-        position: absolute
-        height: 100%
-        width: auto
-        z-index: 15
-    &__inner
-        display: flex
-        flex-direction: column
-        justify-content: center
-        flex-grow: 1
-        text-align: center
-        padding: 0 160px
     &__title
         color: $colorMain
-        font-size: 3rem 
-        font-weight: bold
-        position: relative
-        margin-bottom: 16px
-        text-transform: uppercase
-        //mix-blend-mode: difference
     &__subtitle
-        font-size: 1rem
-        margin-bottom: 32px
-        text-transform: uppercase
-        position: relative
         color: $colorLight
-        //mix-blend-mode: screen
-        //z-index: 20
-    &__button-inner
-        display: flex
-        justify-content: center
-        position: relative
-        z-index: 20
 
 //services block
 .services
-    padding: 80px 160px
-    &__title
-        font-size: 3rem
-        font-weight: bold
-        text-align: center
-        margin-bottom: 80px
-        text-transform: uppercase
-    &__inner
-        display: grid
-        grid-template-columns: 1fr 1fr
-        grid-template-raws: 1fr 1fr 1fr
-        grid-column-gap: 32px
-        grid-row-gap: 32px
     &-item
         background-color: $colorMain
-        padding: 32px
-        border-radius: 16px
         color: $colorLight
-        text-align: center
-        text-transform: uppercase
-        &:last-child
-            grid-column-start: 1
-            grid-column-end: 3
-            .services-item__image
-                aspect-ratio: 4 / 1
-            .services-item__img
-                width: 100%
-                height: auto
-            &:hover
-                .services-item__img
-                    width: 110%
-                    height: auto
-                    transition: all .3s linear
         &:hover 
-            .services-item__img
-                height: 110%
-                transition: all .3s linear
             //.services-item__name
                 color: $colorLight
             .services-item__button
                 color: $colorLight
-                background-color: $colorMain
+                background-color: $colorGreen
+                border-color: $colorGreen
         &__image
-            position: relative
-            width: 100%
-            aspect-ratio: 16 / 9
             background-color: $colorLight
-            overflow: hidden
-            border-radius: 16px
-            margin-bottom: 16px
-        &__img
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
-            height: 100%
-            width: auto
-            transition: all .3s linear
-        &__name
-            margin-bottom: 16px
-            
+//about
+.about
+    &__inner
+        &:nth-child(2n - 1)
+            background-color: $colorMain
+            color: $colorLight
+    &__collab
+        background-color: $colorMain
 //gallery block
 .gallery
     background-color: $colorMain
-    padding: 80px 160px
     &__title
-        font-weight: bold
-        font-size: 3rem
         color: $colorLight
-        text-align: center
-        margin-bottom: 80px
-        text-transform: uppercase
-    &__inner
-        display: flex
-        justify-content: space-between
-    &__item
-        width: calc(100% - 160px)
-        margin: 0 auto
-        aspect-ratio: 16 / 9
-        overflow: hidden
-        position: relative
-        border-radius: 16px
-        &-img
-            position: absolute
-            height: 100%
-            width: auto
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
     &__arrow
-        margin: auto 0
-        width: 32px
-        height: 32px
         border-left: 2px solid $colorLight
         border-top: 2px solid $colorLight
-        transform: rotate(-45deg)
-        cursor: pointer
-        &--right
-            transform: rotate(135deg)
 //feedback block
 .feedback
-    padding: 80px 160px
     color: $colorLight
     &__inner
         background-color: $colorMain
-        padding: 32px
-        border-radius: 16px
-    &-form
+//footer block
+.footer
+    background-color: $colorMain
+    color: $colorLight
+    &__logo
+        background-color: $colorLight
+    &__contact
+        background-color: $colorLight
+//servicesNav block
+.services
+    &-nav
+        background-color: $colorMain
+        color: $colorLight
+        &__logo
+            background-color: $colorLight
+        &__link
+            &::after
+                background-color: $colorLight
+//service page
+.service
+    &-item
+        background-color: $colorMain
+    &-description
         &__inner
-            margin-bottom: 16px
-        &__label
-            margin-bottom: 8px
-            font-weight: bold
-        &__button
-            margin: 0 auto
-            &-inner
+            color: $colorLight
+    &-tab
+        color: $colorMain
+        font-weight: bold
+        &:hover
+            background-color: $colorGreen
+            color: $colorLight
+        &--active
+            background-color: $colorMain
+            color: $colorLight
+            &:hover
+                background-color: $colorMain
+    &-block
+        background-color: $colorMain
+        &__image
+            background-color: $colorLight
+        &__name
+            border-left: 2px solid $colorLight
+        &__arrow
+            border-right: 2px solid $colorLight
+            border-top: 2px solid $colorLight
+    &-popup__inner
+        background-color: $colorMain
+        color: $colorLight
+@media (max-width: 1000px)
+    .service
+        &__inner
+            padding: 40px
+        &-description
+            &__inner
+                flex-direction: column
+        &-mobile
+            &__tabs
                 display: flex
+                overflow-x: scroll
+                min-height: 60px
+                max-width: calc(100vw - 80px)
+                -ms-overflow-style: none
+                scrollbar-width: none
+                &::-webkit-scrollbar
+                    display: none
+            &__tab
+                border: 2px solid $colorMain
+                color: $colorMain
+                padding: 20px
+                line-height: 20px
+                min-height: 60px
+                white-space: nowrap
+                border-right: none
+                border-bottom: none
+                flex-grow: 1
+                text-align: center
+                &:last-child
+                    border-right: 2px solid $colorMain
+                &--active
+                    background-color: $colorMain
+                    color: $colorLight
+        &-block
+            &__wrapper
+                min-height: calc(100vh - 396px)
+                display: flex
+                flex-direction: column
+            &__inner
+                max-width: 100%
+                max-height: 80%
+            &__image
+                &--mobile
+                    margin: 32px 32px 0px 0px
+                    //aspect-ratio: 1 / 1
+                    &:last-child
+                        margin-right: 0
+                &-inner
+                    &--mobile
+                        flex-grow: 1
+                        overflow-y: visible
+                        overflow-x: scroll
+                        display: flex
+                        max-width: calc(100vw - 144px)
+            &__img
+                &--mobile
+                    width: 110%
+                    height: auto
+        &-tabs
+            display: flex
+            overflow-x: scroll
+            min-height: 60px
+            max-width: calc(100vw - 80px)
+            -ms-overflow-style: none
+            scrollbar-width: none
+            &::-webkit-scrollbar
+                display: none
+        &-tab
+            border: 2px solid $colorMain
+            color: $colorMain
+            padding: 20px
+            line-height: 20px
+            min-height: 60px
+            white-space: nowrap
+            border-right: none
+            border-bottom: none
+            flex-grow: 1
+            text-align: center
+            &:last-child
+                border-right: 2px solid $colorMain
+            &--active
+                background-color: $colorMain
+                color: $colorLight

@@ -1,8 +1,16 @@
 import module from './modules/module.js';
 
-import AirDatepicker from 'air-datepicker';
-import 'air-datepicker/air-datepicker.css';
+const smoothLinks = document.querySelectorAll("a[href^='#']");
+for (let smoothLink of smoothLinks) {
+    smoothLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        const id = smoothLink.getAttribute("href");
 
-new AirDatepicker('#date');
+        document.querySelector(id).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    });
+};
 
 console.log(module);

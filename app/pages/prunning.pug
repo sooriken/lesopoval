@@ -1,0 +1,101 @@
+include ../blocks/servicesNav
+include ../blocks/footer
+include ../blocks/servicePopup
+
+doctype html
+html(lang="ru")
+    head
+        meta(charset="utf-8")    
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        title Gulp
+        // default css
+        link(rel="stylesheet" href="../../css-min/default.min.css")
+        // normalize css
+        link(rel="stylesheet" href="../../css-min/normalize.min.css")
+        // style css
+        link(rel="stylesheet" href="../../css-min/style.min.css")
+        // fonts
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet")
+  
+body  
+    .page
+        +servicesNav
+        .service    
+            .service__inner
+                .service-description
+                    //.service-description__title Обрезка деревьев
+                    .service-description__inner
+                        .service-tabs
+                            .service-tab.service-tab--active Декоративная обрезка 
+                            .service-tab Формирование кроны
+                            .service-tab Топиарная обрезка  
+                            .service-tab Санитарная обрезка
+                        //блок "Декоративная обрезка"
+                        .service-block.service-block--active(id="serviceWhy")
+                            .service-block__arrow.service-block__arrow--up
+                            .service-block__image-inner
+                                .service-block__image
+                                    img.service-block__img(src="../src/images/service/cutting/1.jpeg")
+                                .service-block__image
+                                    img.service-block__img(src="../src/images/service/cutting/2.jpeg")
+                                .service-block__image
+                                    img.service-block__img(src="../src/images/service/cutting/3.jpeg")
+                                .service-block__image
+                                    img.service-block__img(src="../src/images/service/cutting/4.jpeg")
+                            .service-block__inner
+                                .service-block__name Лишь некоторые особенности внутренней политики объединены в целые кластеры себе подобных.
+                                .service-block__description-inner
+                                    .service-block__description Как принято считать, предприниматели в сети интернет рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок.
+                                    .service-block__description Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности выявляет срочную потребность направлений прогрессивного развития. С другой стороны, высокое качество позиционных исследований требует анализа экономической целесообразности принимаемых решений.
+                                    .service-block__description Являясь всего лишь частью общей картины, акционеры крупнейших компаний своевременно верифицированы.
+                                .service-block__button-inner
+                                    a.service-block__button.button(href="#") заказать услугу
+                            .service-block__arrow.service-block__arrow--down
+                        //блок "Примеры работ"
+                        .service-block.service-block--example(id="serviceExample")
+                            .service-block__inner
+                                .service-block__name Примеры работ, проведённых нашей компанией
+                                .service-block__images
+                                    .service-block__image
+                                        img.service-block__img(src="https://lipsum.app/id/15/1080x1920")
+                                    .service-block__image
+                                        img.service-block__img(src="https://lipsum.app/id/16/1080x1920")
+                                    .service-block__image
+                                        img.service-block__img(src="https://lipsum.app/id/17/1080x1920")
+                        //блок "Стоимость услуги"
+                        .service-block(id="serviceCost")
+                            .service-block__image
+                                img.service-block__img(src="https://lipsum.app/id/11/1080x1920")
+                            .service-block__inner
+                                .service-block__name META 3 record label was founded by Shaky Lake and Baky Hike in 2020 business accelerator.
+                                .service-block__description-inner
+                                    .service-block__description Hac habitasse platea dictumst vestibulum rhoncus est. Sit amet dictum sit amet justo. Tortor aliquam nulla facilisi cras.
+                                    .service-block__description Maecenas ultricies mi eget mauris pharetra. Sit amet consectetur adipiscing elit ut aliquam purus. Porta nibh venenatis cras sed felis. Aenean vel elit scelerisque mauris pellentesque pulvinar. Et malesuada fames ac turpis egestas sed tempus. Enim sit amet venenatis urna cursus eget.
+                                    .service-block__description Maecenas ultricies mi eget mauris pharetra et ultrices. A condimentum vitae sapien pellentesque habitant morbi.
+                        //блок "Заказ"
+                        .service-block.service-block--order(id="serviceOrder")
+                            .service-block__inner
+                                .service-block__name Заполните анкету и мы свяжемся с вами
+                                .service-block__form
+                                    .service-block__label Имя
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__form
+                                    .service-block__label Компания
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__form
+                                    .service-block__label Телефон
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__form
+                                    .service-block__label Почта
+                                    input.service-block__textform.textform(type="text")
+                                //.service-block__form
+                                    .service-block__label Услуга
+                                    input.service-block__textform.textform(type="text")
+                                .service-block__button-inner
+                                    a.service-block__button.button(href="#") Сделать заказ
+                                
+        +footer
+        +servicePopup  
+script(src="../js-bundle/service.bundle.js")

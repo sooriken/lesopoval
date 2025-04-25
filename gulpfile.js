@@ -12,7 +12,7 @@ const minCss       = require('gulp-minify-css');
 const autoprefixer = require('gulp-autoprefixer');
 const webpCss      = require('gulp-webp-css');
 const imagemin     = require('gulp-imagemin');
-const webp         = require('gulp-webp');
+//const webp         = require('gulp-webp');
 const changed      = require('gulp-changed');
 const server       = require('gulp-server-livereload');
 const clean        = require('gulp-clean');
@@ -83,7 +83,7 @@ gulp.task('pug', function() {
     return src([sources.pug, sources.blocksPug ])
         .pipe(plumber(plumberNotify('Pug')))
         .pipe(pug({pretty: true}))
-		.pipe(webpHTML())
+		//.pipe(webpHTML())
         .pipe(htmlclean())
         .pipe(dest('./app/'));
 });
@@ -101,7 +101,7 @@ gulp.task('sass', function() {
         }).on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(sourceMaps.write())
-        .pipe(webpCss())
+        //.pipe(webpCss())
         .pipe(dest(sources.destCss))
         // вывод минифицированной версии css файла:
         .pipe(minCss())

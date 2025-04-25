@@ -2,7 +2,7 @@ const config = {
 	mode: 'production',
 	entry: {
 		main   : './app/src/js/main.js',
-		example: './app/src/js/example.js',
+		service: './app/src/js/service.js',
 		header : './app/src/js/header.js'
 	},
 	output: {

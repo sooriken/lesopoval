@@ -1,21 +1,22 @@
 mixin feedback
-    .feedback
+    .feedback(id="blockFeedback")
+        .feedback__title 
         .feedback__inner
             .feedback-form
                 .feedback-form__inner
                     .feedback-form__label Имя
-                    input(type="text").feedback-form__textform.textform
-                .feedback-form__inner
+                    input(type="text" placeholder="Иван").feedback-form__textform.textform
+                //.feedback-form__inner
                     .feedback-form__label Компания
-                    input(type="text").feedback-form__textform.textform
+                    input(type="text" placeholder="").feedback-form__textform.textform
                 .feedback-form__inner
                     .feedback-form__label Телефон
-                    input(type="phone").feedback-form__textform.textform
+                    input(type="phone" placeholder="+7(123)-456-78-90" value="+7").feedback-form__textform.textform
                 .feedback-form__inner
                     .feedback-form__label Почта
-                    input(type="email").feedback-form__textform.textform
+                    input(type="email" placeholder="example@mail.ru").feedback-form__textform.textform
                 .feedback-form__inner
                     .feedback-form__label Услуга
-                    input(type="select").feedback-form__textform.textform
+                    input(type="select" placeholder="Спил деревьев").feedback-form__textform.textform
                 .feedback-form__button-inner   
                     .feedback-form__button.button Подать заявку

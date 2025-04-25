@@ -1,14 +1,15 @@
 mixin welcome
     .welcome
-        //img.welcome__bg(src="../images-min/welcome/welcome.png")
         .welcome__nav
             .welcome__nav-logo 
+                img(src="../images-min/logo/logo.png")
             .welcome__nav-links
-                a.welcome__nav-link(href="#") Услуги
-                a.welcome__nav-link(href="#") Галерея
-                a.welcome__nav-link(href="#") Связь
+                a.welcome__nav-link(href="#blockServices") Услуги
+                a.welcome__nav-link(href="#blockAbout") О нас
+                a.welcome__nav-link(href="#blockGallery") Галерея
+                a.welcome__nav-link(href="#blockFeedback") Связь
         .welcome__inner 
             .welcome__title Эксперты в лесных работах
             .welcome__subtitle Удаление, обрезка и утилизация деревьев с гарантией качества
             .welcome__button-inner
-                .welcome__button.button Рассчитать стоимость
+                a.welcome__button.button(href="#blockFeedback") Рассчитать стоимость
