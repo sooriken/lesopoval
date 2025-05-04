@@ -1,0 +1,508 @@
+$colorMain:  #154430 
+$colorGreen: #1E5A3E 
+$colorLight: #F5F5F5
+$colorWhite: #FFFFFF
+$colorDark:  #333333
+
+$colorGold:  #FFD700 
+$colorBrown: #A0522D 
+
+// Переменные для медиазапросов
+$mobile-small: 300px
+$mobile-medium: 400px
+$mobile: 500px  // Новый промежуточный размер
+$tablet: 768px
+$desktop: 1024px
+$desktop-large: 1440px
+$desktop-xlarge: 1920px 
+
+=respond-to($media)
+    @if $media == xsmall
+        @media (max-width: $mobile-small)
+            @content
+    @else if $media == small
+        @media (max-width: $mobile-medium)
+            @content
+    @else if $media == medium
+        @media (max-width: $mobile)
+            @content
+    @else if $media == tablet
+        @media (max-width: $tablet)
+            @content
+    @else if $media == desktop
+        @media (max-width: $desktop)
+            @content
+    @else if $media == large
+        @media (min-width: $desktop-large)
+            @content
+    @else if $media == xlarge
+        @media (min-width: $desktop-xlarge)
+            @content
+
+// Базовые адаптивные стили
+.container
+    padding: 0 160px
+    +respond-to(desktop)
+        padding: 0 120px
+    +respond-to(tablet)
+        padding: 0 80px
+    +respond-to(medium)
+        padding: 0 40px
+    +respond-to(small)
+        padding: 0 20px
+    +respond-to(xsmall)
+        padding: 0 12px
+    +respond-to(large)
+        max-width: 1400px
+        margin: 0 auto
+        padding: 0
+    +respond-to(xlarge)
+        max-width: 1800px
+
+.mobile-menu
+    +respond-to(tablet)
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        width: 32px
+        height: 24px
+    
+    &__line
+        display: block
+        width: 100%
+        height: 2px
+        transition: all 0.3s ease 
+        background: $colorMain
+        box-shadow: 0 0 2px 1px rgba(255,255,255,0.8)  // Белая окантовка
+        position: relative
+        z-index: 1
+        &:nth-child(2)
+            margin: 6px 0
+    &.active
+        .mobile-menu__line
+            background: $colorLight
+            box-shadow: 0 0 2px 1px rgba(0,0,0,0.3)  // Темная окантовка при активном состоянии
+            &:nth-child(1)
+                transform: translateY(8px) rotate(45deg)
+            &:nth-child(2)
+                opacity: 0 
+            &:nth-child(3)
+                transform: translateY(-8px) rotate(-45deg)
+.welcome__nav-links
+    +respond-to(tablet)
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100vh
+        background: rgba($colorMain, 0.98)
+        color: $colorLight
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        z-index: 1000
+        transition: all 0.3s ease
+        
+        &.active
+            display: flex
+        
+        .welcome__nav-link
+            margin: 15px 0
+            font-size: 1.2rem
+            padding: 10px 20px
+            &::after
+                display: none
+            
+// Welcome блок
+.welcome
+    min-height: 100vh
+    +respond-to(tablet)
+        min-height: 100vh
+    +respond-to(medium)
+        min-height: 100vh
+    +respond-to(small)
+        min-height: 100vh
+    +respond-to(xsmall)
+        min-height: 100vh
+
+    &__nav
+        +respond-to(desktop)
+            padding: 16px 120px
+        +respond-to(tablet)
+            padding: 16px 80px
+        +respond-to(medium)
+            padding: 16px 40px
+            flex-direction: column
+            align-items: center
+        +respond-to(small)
+            padding: 12px 20px
+        +respond-to(xsmall)
+            padding: 8px 12px
+        +respond-to(large)
+            padding: 24px 200px
+        +respond-to(xlarge)
+            padding: 24px 240px
+
+        &-links
+            +respond-to(medium)
+                margin-top: 20px
+                flex-wrap: wrap
+                justify-content: center
+
+        &-link
+            +respond-to(medium)
+                margin: 0 10px 10px
+                font-size: 14px
+            +respond-to(small)
+                font-size: 12px
+
+    &__inner
+        +respond-to(desktop)
+            padding: 0 120px
+        +respond-to(tablet)
+            padding: 0 80px
+        +respond-to(medium)
+            padding: 20px 40px
+            text-align: center
+        +respond-to(small)
+            padding: 20px
+        +respond-to(xsmall)
+            padding: 16px
+        +respond-to(large)
+            padding: 0 200px
+        +respond-to(xlarge)
+            padding: 0 240px
+
+    &__title
+        +respond-to(desktop)
+            font-size: 3rem
+        +respond-to(tablet)
+            font-size: 2.5rem
+        +respond-to(medium)
+            font-size: 2rem
+            margin-bottom: 10px
+        +respond-to(small)
+            font-size: 1.8rem
+        +respond-to(xsmall)
+            font-size: 1.5rem
+            margin-bottom: 8px
+        +respond-to(xlarge)
+            font-size: 4rem
+
+    &__subtitle
+        +respond-to(medium)
+            font-size: 0.9rem
+            margin-bottom: 20px
+        +respond-to(xsmall)
+            font-size: 0.8rem
+            margin-bottom: 16px
+        +respond-to(xlarge)
+            font-size: 1.5rem
+
+// Services блок с новым брейкпоинтом 500px
+.services
+    +respond-to(desktop)
+        padding: 80px 120px
+    +respond-to(tablet)
+        padding: 60px 80px
+        &__inner
+            grid-template-columns: repeat(2, 1fr)
+    +respond-to(medium)  // 500px и меньше - 1 колонка
+        padding: 40px
+        &__inner
+            grid-template-columns: 1fr
+            gap: 20px
+    +respond-to(small)
+        padding: 30px 20px
+    +respond-to(xsmall)
+        padding: 20px 12px
+        &__title
+            font-size: 1.8rem
+            margin-bottom: 30px
+    +respond-to(large)
+        padding: 100px 200px
+    +respond-to(xlarge)
+        padding: 120px 240px
+
+    .services-item
+        +respond-to(tablet)
+            &:nth-child(n)
+                grid-column: auto
+        +respond-to(medium)
+            padding: 24px
+        +respond-to(small)
+            padding: 20px
+        +respond-to(xsmall)
+            padding: 16px
+
+// Gallery блок с исправленными стрелками
+.gallery
+    +respond-to(desktop)
+        padding: 80px 120px
+    +respond-to(tablet)
+        padding: 60px 80px
+    +respond-to(medium)
+        padding: 40px
+    +respond-to(small)
+        padding: 30px 20px
+    +respond-to(xsmall)
+        padding: 20px 12px
+    +respond-to(large)
+        padding: 100px 200px
+    +respond-to(xlarge)
+        padding: 120px 240px
+
+    &__inner
+        +respond-to(tablet)
+            position: relative
+            padding: 0 80px  // Увеличили отступы для стрелок
+            min-height: 300px  // Фиксированная высота для галереи
+
+    &__item
+        +respond-to(tablet)
+            width: calc(100% - 160px)  // Учитываем увеличенные отступы
+            margin: 0 auto
+            height: 300px
+        +respond-to(medium)
+            height: 250px
+        +respond-to(small)
+            height: 200px
+        +respond-to(xsmall)
+            height: 180px
+
+    &__arrow
+        +respond-to(tablet)
+            position: absolute
+            top: 50%
+            width: 40px
+            height: 40px
+            margin: 0
+            z-index: 10
+            &--left
+                left: 20px
+                transform: translateY(-50%) rotate(-45deg)  // Сохраняем поворот
+            &--right
+                right: 20px
+                transform: translateY(-50%) rotate(135deg)  // Сохраняем поворот
+        +respond-to(medium)
+            width: 36px
+            height: 36px
+            &--left
+                left: 10px
+            &--right
+                right: 10px
+        +respond-to(small)
+            width: 32px
+            height: 32px
+        +respond-to(xsmall)
+            width: 28px
+            height: 28px
+
+
+// About блок с адаптивными шрифтами
+.about
+    &__inner
+        padding: 60px 160px
+        +respond-to(desktop)
+            padding: 50px 120px
+        +respond-to(tablet)
+            padding: 40px 80px
+        +respond-to(medium)
+            padding: 30px 40px
+        +respond-to(small)
+            padding: 25px 20px
+        +respond-to(xsmall)
+            padding: 20px 12px
+        +respond-to(large)
+            padding: 70px 200px
+        +respond-to(xlarge)
+            padding: 80px 240px
+
+        &:nth-child(2n - 1)
+            background-color: $colorMain
+            color: $colorLight
+
+    &__title
+        font-size: 2.2rem
+        font-weight: bold
+        margin-bottom: 25px
+        +respond-to(desktop)
+            font-size: 2rem
+            margin-bottom: 22px
+        +respond-to(tablet)
+            font-size: 1.8rem
+            margin-bottom: 20px
+        +respond-to(medium)
+            font-size: 1.6rem
+            margin-bottom: 18px
+        +respond-to(small)
+            font-size: 1.4rem
+            margin-bottom: 16px
+        +respond-to(xsmall)
+            font-size: 1.3rem
+            margin-bottom: 14px
+        +respond-to(large)
+            font-size: 2.4rem
+        +respond-to(xlarge)
+            font-size: 2.6rem
+
+    &__description
+        font-size: 1.1rem
+        margin-top: 12px
+        line-height: 1.5
+        +respond-to(desktop)
+            font-size: 1.05rem
+            margin-top: 10px
+        +respond-to(tablet)
+            font-size: 1rem
+            margin-top: 9px
+        +respond-to(medium)
+            font-size: 0.95rem
+            margin-top: 8px
+            line-height: 1.45
+        +respond-to(small)
+            font-size: 0.9rem
+            margin-top: 7px
+            line-height: 1.4
+        +respond-to(xsmall)
+            font-size: 0.85rem
+            margin-top: 6px
+            line-height: 1.35
+        +respond-to(large)
+            font-size: 1.15rem
+        +respond-to(xlarge)
+            font-size: 1.2rem
+
+    &__collab
+        width: 128px
+        height: 128px
+        border-radius: 50%
+        margin: 0 15px
+        +respond-to(tablet)
+            width: 110px
+            height: 110px
+            margin: 0 10px
+        +respond-to(medium)
+            width: 90px
+            height: 90px
+        +respond-to(small)
+            width: 70px
+            height: 70px
+            margin: 0 8px
+        +respond-to(xsmall)
+            width: 60px
+            height: 60px
+            margin: 0 5px
+        +respond-to(large)
+            width: 140px
+            height: 140px
+        +respond-to(xlarge)
+            width: 150px
+            height: 150px
+
+// Feedback блок
+.feedback
+    +respond-to(desktop)
+        padding: 80px 120px
+    +respond-to(tablet)
+        padding: 60px 80px
+    +respond-to(medium)
+        padding: 40px
+    +respond-to(small)
+        padding: 30px 20px
+    +respond-to(xsmall)
+        padding: 20px 12px
+    +respond-to(large)
+        padding: 100px 200px
+    +respond-to(xlarge)
+        padding: 120px 240px
+
+    &-form
+        +respond-to(medium)
+            &__inner
+                margin-bottom: 12px
+            &__label
+                font-size: 14px
+        +respond-to(xsmall)
+            &__label
+                font-size: 12px
+
+// Footer блок
+.footer
+    +respond-to(desktop)
+        padding: 20px 120px
+    +respond-to(tablet)
+        padding: 20px 80px
+    +respond-to(medium)
+        padding: 20px
+        flex-direction: column
+        align-items: center
+        text-align: center
+    +respond-to(small)
+        padding: 16px
+    +respond-to(xsmall)
+        padding: 12px
+    +respond-to(large)
+        padding: 24px 200px
+    +respond-to(xlarge)
+        padding: 28px 240px
+
+    &__inner
+        +respond-to(medium)
+            flex-direction: column
+            align-items: center
+            margin-bottom: 20px
+
+    &__logo
+        +respond-to(medium)
+            margin: 0 0 10px 0
+        +respond-to(xsmall)
+            width: 24px
+            height: 24px
+            & > img
+                width: 24px
+                height: 24px
+
+    &__contacts
+        +respond-to(medium)
+            justify-content: center
+            margin-top: 20px
+
+    &__contact
+        +respond-to(medium)
+            margin: 0 8px
+        +respond-to(xsmall)
+            width: 24px
+            height: 24px
+
+// Мобильное меню
+.mobile-menu
+    display: none
+    +respond-to(medium)
+        display: block
+        position: fixed
+        top: 20px
+        right: 20px
+        z-index: 1000
+    +respond-to(small)
+        top: 16px
+        right: 16px
+    +respond-to(xsmall)
+        top: 12px
+        right: 12px
+
+.welcome__nav-links
+    +respond-to(medium)
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100vh
+        background: $colorMain
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        &.active
+            display: flex

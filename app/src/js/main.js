@@ -11,6 +11,25 @@ for (let smoothLink of smoothLinks) {
             block: "start"
         });
     });
-};
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.querySelector('.mobile-menu');
+        const menuLinks = document.querySelector('.welcome__nav-links');
+        
+        menuButton.addEventListener('click', function() {
+            this.classList.toggle('active');
+            menuLinks.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.welcome__nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                menuButton.classList.remove('active');
+                menuLinks.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+    });
 console.log(module);

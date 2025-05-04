@@ -1,5 +1,6 @@
 @import './blocks/*.sass'
 @import './pages/*.sass'
+@import './media.sass'
 
 $colorMain:  #154430 
 $colorGreen: #1E5A3E 
@@ -46,7 +47,25 @@ $colorBrown: #A0522D
             background-color: $colorMain
             color: $colorLight
     &__collab
-        background-color: $colorMain
+        //background-color: $colorMain
+        position: relative
+        overflow: hidden
+        border: 2px solid $colorMain
+        background-color: #fff
+        &-img
+            position: absolute
+            height: 100%
+            width: auto
+            top: 0
+            left: 50%
+            transform: translateX(-50%)
+    &__item--collab
+        display: flex
+        flex-wrap: wrap
+        justify-content: center  
+        gap: 20px 
+        margin: 0 -10px
+        
 //gallery block
 .gallery
     background-color: $colorMain
@@ -191,3 +210,10 @@ $colorBrown: #A0522D
             &--active
                 background-color: $colorMain
                 color: $colorLight
+
+.mobile-menu
+    display: none
+    background: transparent
+    border: none
+    cursor: pointer
+    z-index: 1001
