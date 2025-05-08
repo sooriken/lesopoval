@@ -1,47 +1,26 @@
+//- about.pug
 mixin about
-    .about(id="blockAbout")
-        .about__inner
+    section.about(id="blockAbout" itemscope itemtype="https://schema.org/AboutPage")
+        article.about__inner(itemprop="mainEntity" itemscope itemtype="https://schema.org/WebPageElement")
             .about__item
-                .about__title Почему выбирают нас?
-                .about__description С нами надежно и просто. Мы с радостью сотрудничаем как с владельцами сотен частных домовладений по всей Ленобласти, так и с крупнейшими компаниями, доверяющими нам свои деревья в том числе и в других городах нашей страны. 
-        .about__inner
+                h2.about__title(itemprop="headline") Почему выбирают нас?
+                p.about__description(itemprop="description") С нами надежно и просто. Мы с радостью сотрудничаем как с владельцами сотен частных домовладений по всей Ленобласти, так и с крупнейшими компаниями, доверяющими нам свои деревья в том числе и в других городах нашей страны.
+        
+        article.about__inner(itemprop="mainEntity" itemscope itemtype="https://schema.org/WebPageElement")
             .about__item
-                .about__title Что мы можем предложить?
-                .about__description Мы готовы выполнять как комплексные решения под ключ, так и следующие услуги по отдельности:
-                .about__description Спил деревьев частями, удаление аварийных деревьев, валка деревьев целиком. 
-                .about__description Все виды обрезки любых пород деревьев.
-                .about__description Измельчение веток, стволов. Фрезеровка и выкорчевка пней. 
-                .about__description Спил деревьев частями, удаление аварийных деревьев, валка деревьев целиком. 
-                .about__description Ветрозащита и каблинг.
-                .about__description Обследование, диагностика состояния деревьев. Уход и лечение деревьев. Внутристволовые инъекции, аэрация почвы, внесение удобрений. 
-        .about__inner
+                h2.about__title(itemprop="headline") Что мы можем предложить?
+                each desc in ['Мы готовы выполнять как комплексные решения под ключ, так и следующие услуги по отдельности:', 'Спил деревьев частями, удаление аварийных деревьев, валка деревьев целиком.', 'Все виды обрезки любых пород деревьев.', 'Измельчение веток, стволов. Фрезеровка и выкорчевка пней.', 'Ветрозащита и каблинг.', 'Обследование, диагностика состояния деревьев. Уход и лечение деревьев. Внутристволовые инъекции, аэрация почвы, внесение удобрений.']
+                    p.about__description(itemprop="description")= desc
+        
+        article.about__inner(itemprop="mainEntity" itemscope itemtype="https://schema.org/WebPageElement")
             .about__item
-                .about__title Немного о нас
-                .about__description Наша коллектив сложился в 2017 году. 
-                .about__description Всю нашу карьеру мы непрерывно учимся и совершенствуем свои навыки для того, чтобы ваши деревья были безопасны, здоровы и ухожены.
-        .about__inner
-            .about__item.about__item--collab
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/dvorets.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/gaz.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/igora.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/kolledj.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/lukoil.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/olymp.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/repino.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/rjd.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/sibur.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/stroi.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/tochka.jpg")
-                .about__collab
-                    img.about__collab-img(src="../images-min/about/vuoksa.jpg")
+                h2.about__title(itemprop="headline") Немного о нас
+                each desc in ['Наш коллектив сложился в 2017 году.', 'Всю нашу карьеру мы непрерывно учимся и совершенствуем свои навыки для того, чтобы ваши деревья были безопасны, здоровы и ухожены.']
+                    p.about__description(itemprop="description")= desc
+        
+        section.about__inner(aria-label="Наши партнеры")
+            .about__item-title Наши партнёры:
+            .about__item.about__item--collab(itemscope itemtype="https://schema.org/Organization")
+                each partner in ['dvorets', 'gaz', 'igora', 'kolledj', 'lukoil', 'olymp', 'repino', 'rjd', 'sibur', 'stroi', 'tochka', 'vuoksa']
+                    .about__collab(itemprop="brand" itemscope itemtype="https://schema.org/Organization")
+                        img.about__collab-img(src=`../images-min/about/${partner}.jpg` alt=`Логотип партнера ${partner}` loading="lazy" width="120" height="80" itemprop="logo")

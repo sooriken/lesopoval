@@ -20,7 +20,9 @@ let arrowUp = document.querySelector('.service-block__arrow--up');
 let arrowDown = document.querySelector('.service-block__arrow--down');
 let serviceCollection = document.querySelectorAll('.service-block__wrapper');
 let serviceLength = serviceCollection.length;
-console.log(transform);
+
+let serviceHeight = document.querySelector('.service-block').style;
+let tabsHeight = document.querySelector('.service-tab');
 
 // функция слистывания кейса вниз
 arrowDown.addEventListener("click", function () {

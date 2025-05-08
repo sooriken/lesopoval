@@ -1,29 +1,11 @@
+//- services.pug
 mixin services
-    .services(id="blockServices")
-        .services__title Услуги
+    section.services(id="blockServices" itemscope itemtype="https://schema.org/Service")
+        h2.services__title(itemprop="name") Услуги
         .services__inner
-            a.services-item(href="../pages/cutting.html")
-                .services-item__image
-                    img.services-item__img(src="https://lipsum.app/id/1/1920x1080")
-                .services-item__name Спил деревьев
-                .services-item__button.button к услуге
-            a.services-item(href="../pages/prunning.html")
-                .services-item__image
-                    img.services-item__img(src="https://lipsum.app/id/2/1920x1080")
-                .services-item__name Обрезка деревьев
-                .services-item__button.button к услуге
-            a.services-item(href="#")
-                .services-item__image 
-                    img.services-item__img(src="https://lipsum.app/id/3/1920x1080")
-                .services-item__name Расчистка участков
-                .services-item__button.button к услуге
-            a.services-item(href="#")
-                .services-item__image
-                    img.services-item__img(src="https://lipsum.app/id/4/1920x1080")
-                .services-item__name Удаление пней
-                .services-item__button.button к услуге
-            a.services-item(href="#")
-                .services-item__image
-                    img.services-item__img(src="https://lipsum.app/id/5/1920x1080")
-                .services-item__name Измельчение веток 
-                .services-item__button.button к услуге
+            each service in [{url: '../pages/cutting.html', img: 1, name: 'Спил деревьев'}, {url: '../pages/prunning.html', img: 2, name: 'Обрезка деревьев'}, {url: '#', img: 3, name: 'Расчистка участков'}, {url: '#', img: 4, name: 'Удаление пней'}, {url: '#', img: 5, name: 'Измельчение веток'}]
+                a.services-item(href=service.url itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/Offer")
+                    .services-item__image
+                        img.services-item__img(src=`https://lipsum.app/id/${service.img}/1920x1080` alt=service.name loading="lazy" width="300" height="200" itemprop="image")
+                    h3.services-item__name(itemprop="name")= service.name
+                    .services-item__button.button(aria-hidden="true") к услуге

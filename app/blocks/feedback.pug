@@ -1,22 +1,27 @@
+//- feedback.pug
 mixin feedback
-    .feedback(id="blockFeedback")
-        .feedback__title 
-        .feedback__inner
-            .feedback-form
+    section.feedback(id="blockFeedback" itemscope itemtype="https://schema.org/ContactPage")
+        h2.feedback__title Обратная связь
+        .feedback__inner(itemprop="mainEntity" itemscope itemtype="https://schema.org/WebPageElement")
+            form.feedback-form(method="POST" action="/submit" itemscope itemtype="https://schema.org/ContactPoint")
                 .feedback-form__inner
-                    .feedback-form__label Имя
-                    input(type="text" placeholder="Иван").feedback-form__textform.textform
-                //.feedback-form__inner
-                    .feedback-form__label Компания
-                    input(type="text" placeholder="").feedback-form__textform.textform
+                    label.feedback-form__label(for="name") Имя
+                    input#name(type="text" placeholder="Иван" name="name" required itemprop="name").feedback-form__textform.textform
+                
                 .feedback-form__inner
-                    .feedback-form__label Телефон
-                    input(type="phone" placeholder="+7(123)-456-78-90" value="+7").feedback-form__textform.textform
+                    label.feedback-form__label(for="phone") Телефон
+                    input#phone(type="tel" placeholder="+7(123)-456-78-90" name="phone" required itemprop="telephone").feedback-form__textform.textform
+                
                 .feedback-form__inner
-                    .feedback-form__label Почта
-                    input(type="email" placeholder="example@mail.ru").feedback-form__textform.textform
+                    label.feedback-form__label(for="email") Почта
+                    input#email(type="email" placeholder="example@mail.ru" name="email" itemprop="email").feedback-form__textform.textform
+                
                 .feedback-form__inner
-                    .feedback-form__label Услуга
-                    input(type="select" placeholder="Спил деревьев").feedback-form__textform.textform
-                .feedback-form__button-inner   
-                    .feedback-form__button.button Подать заявку
+                    label.feedback-form__label(for="service") Услуга
+                    select#service(name="service" required).feedback-form__textform.textform
+                        option(value="Спил деревьев") Спил деревьев
+                        option(value="Обрезка деревьев") Обрезка деревьев
+                        option(value="Удаление пней") Удаление пней
+                
+                .feedback-form__button-inner
+                    button.feedback-form__button.button(type="submit" itemprop="potentialAction") Подать заявку

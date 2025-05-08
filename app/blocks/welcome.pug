@@ -1,19 +1,23 @@
 mixin welcome
-    .welcome
-        .welcome__nav
-            .welcome__nav-logo 
-                img(src="../images-min/logo/logo.png")
-            button.mobile-menu(aria-label="Меню")
-                .mobile-menu__line
-                .mobile-menu__line
-                .mobile-menu__line
-            .welcome__nav-links
-                a.welcome__nav-link(href="#blockServices") Услуги
-                a.welcome__nav-link(href="#blockAbout") О нас
-                a.welcome__nav-link(href="#blockGallery") Галерея
-                a.welcome__nav-link(href="#blockFeedback") Связь
-        .welcome__inner 
-            .welcome__title Эксперты в лесных работах
-            .welcome__subtitle Удаление, обрезка и утилизация деревьев с гарантией качества
+    section.welcome(role="banner" itemscope itemtype="https://schema.org/WPHeader")
+        nav.welcome__nav(aria-label="Основная навигация")
+            a.welcome__nav-logo(href="/" aria-label="Логотип компании" itemprop="logo")
+                img(src="../images-min/logo/logo.png" alt="Логотип лесозаготовительной компании" width="32" height="32" loading="lazy")
+            button.mobile-menu(aria-label="Меню" aria-expanded="false" aria-controls="main-menu")
+                span.mobile-menu__line(aria-hidden="true")
+                span.mobile-menu__line(aria-hidden="true")
+                span.mobile-menu__line(aria-hidden="true")
+            ul.welcome__nav-links#main-menu(role="menubar")
+                li(role="none")
+                    a.welcome__nav-link(href="#blockServices" role="menuitem") Услуги
+                li(role="none")
+                    a.welcome__nav-link(href="#blockAbout" role="menuitem") О нас
+                li(role="none")
+                    a.welcome__nav-link(href="#blockGallery" role="menuitem") Галерея
+                li(role="none")
+                    a.welcome__nav-link(href="#blockFeedback" role="menuitem") Связь
+        .welcome__inner(itemscope itemtype="https://schema.org/Organization")
+            h1.welcome__title(itemprop="name") Эксперты в лесных работах
+            p.welcome__subtitle(itemprop="description") Удаление, обрезка и утилизация деревьев с гарантией качества
             .welcome__button-inner
-                a.welcome__button.button(href="#blockFeedback") Рассчитать стоимость
+                a.welcome__button.button(href="#blockFeedback" role="button" aria-label="Рассчитать стоимость услуг") Рассчитать стоимость

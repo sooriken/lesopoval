@@ -1,8 +1,10 @@
+//- gallery.pug
 mixin gallery
-    .gallery(id="blockGallery")
-        .gallery__title Галерея
+    section.gallery(id="blockGallery" itemscope itemtype="https://schema.org/ImageGallery")
+        h2.gallery__title Наши работы
         .gallery__inner
-            .gallery__arrow.gallery__arrow--left
-            .gallery__item
-                img.gallery__item-img(src="https://lipsum.app/id/6/1920x1080")
-            .gallery__arrow.gallery__arrow--right
+            button.gallery__arrow.gallery__arrow--left(aria-label="Предыдущее изображение")
+            figure.gallery__item(itemprop="image" itemscope itemtype="https://schema.org/ImageObject")
+                img.gallery__item-img(src="https://lipsum.app/id/6/1920x1080" alt="Пример наших работ" loading="lazy" width="800" height="450" itemprop="contentUrl")
+                figcaption.gallery__item-caption(itemprop="description") Профессиональный спил дерева
+            button.gallery__arrow.gallery__arrow--right(aria-label="Следующее изображение")

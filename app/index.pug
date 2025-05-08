@@ -11,7 +11,8 @@ html(lang="ru")
         meta(charset="utf-8")    
         //meta(name="viewport" content="width=device-width, initial-scale=1")
         meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-        title Gulp
+        meta(name="description" content="Профессиональные услуги по уходу за деревьями: спил, обрезка, удаление пней в Ленобласти")
+        title Лесозаготовительная компания | Услуги арбориста
         // default css
         link(rel="stylesheet" href="./css-min/default.min.css")
         // normalize css
@@ -22,13 +23,13 @@ html(lang="ru")
         link(rel="preconnect" href="https://fonts.googleapis.com")
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
         link(href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet")
-  
 body  
-    .page    
+    header.page    
         +welcome
-        +services
-        +about
-        +gallery
-        +feedback
+        main
+            +services
+            +about
+            +gallery
+            +feedback
         +footer
 script(src="./js-bundle/main.bundle.js")
