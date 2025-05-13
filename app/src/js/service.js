@@ -1,172 +1,231 @@
-console.log("Вы попали на страницу service");
+// Service Page Controller
 
-let serviceID = 0;
-let serviceActive = 0;
-let services = document.getElementsByClassName("service-block");
-let servicesLength = services.length;
-let tabs = document.getElementsByClassName("service-tab");
-let tabsLength = tabs.length;
-const animationDuration = 400;
-let scrollable = document.querySelector('.service-block__image-inner'); // Получаем элементы с классом show
-scrollable.scrollTo(0, 100);
-let buttons = document.querySelectorAll('.service-block__button');
-let servicePopup = document.querySelector('.service-popup');
-let servicePopupBackground = document.querySelector('.service-popup__background');
-let serviceNavPopup = document.querySelector('.services-nav__link');
+class ServicePage {
+  constructor() {
+    this.init();
+  }
 
-let serviceBlockID = 0;
-let transform = '';
-let arrowUp = document.querySelector('.service-block__arrow--up');
-let arrowDown = document.querySelector('.service-block__arrow--down');
-let serviceCollection = document.querySelectorAll('.service-block__wrapper');
-let serviceLength = serviceCollection.length;
+  init() {
+    console.log('Service page initialized');
+    this.cacheElements();
+    this.setupEventListeners();
+    this.setInitialStates();
+    this.setupImageResizer();
+  }
 
-let serviceHeight = document.querySelector('.service-block').style;
-let tabsHeight = document.querySelector('.service-tab');
+  cacheElements() {
+    // Основные элементы управления
+    this.serviceBlocks = document.querySelectorAll('.service-block');
+    this.tabs = document.querySelectorAll('.service-tab');
+    this.scrollable = document.querySelector('.service-block__image-inner');
+    this.buttons = document.querySelectorAll('.service-block__button');
+    this.servicePopup = document.querySelector('.service-popup');
+    this.popupBackground = document.querySelector('.service-popup__background');
+    this.serviceNavPopup = document.querySelector('.services-nav__link');
+    
+    // Навигация по кейсам
+    this.arrowUp = document.querySelector('.service-block__arrow--up');
+    this.arrowDown = document.querySelector('.service-block__arrow--down');
+    this.serviceWrappers = document.querySelectorAll('.service-block__wrapper');
+    
+    // Состояние
+    this.currentServiceId = 0;
+    this.currentCaseId = 0;
+    this.animationDuration = 400;
+    this.serviceHeight = this.serviceBlocks[0]?.offsetHeight || 0;
+    this.tabsHeight = this.tabs[0]?.offsetHeight || 0;
+  }
 
-// функция слистывания кейса вниз
-arrowDown.addEventListener("click", function () {
-    if(serviceBlockID < serviceLength - 1) {
-        serviceBlockID = serviceBlockID + 1;
-        serviceCollection.forEach(serviceBlock => {
-            transform = `calc((208px - 100vh) * ${serviceBlockID})`;
-            serviceBlock.style.transform = `translateY(${transform})`;
-        });
-        if(serviceBlockID == 1) {
-            arrowUp.classList.toggle("active");
-        }
-        if(serviceBlockID == serviceLength - 1) {
-            arrowDown.classList.toggle("active");
-        }
-    } 
-});
-
-// функция слистывания кейса вверх
-arrowUp.addEventListener("click", function () {
-    if(serviceBlockID > 0) {
-        serviceBlockID = serviceBlockID - 1;
-        serviceCollection.forEach(serviceBlock => {
-            transform = `calc((272px - 100vh) * ${serviceBlockID})`;
-            serviceBlock.style.transform = `translateY(${transform})`;
-        });
-        if(serviceBlockID == 0) {
-            console.log(serviceLength + "foo");
-            arrowUp.classList.toggle("active");
-        }
-        console.log(serviceBlockID);
-        console.log(serviceLength + "foobar");
-        if(serviceBlockID == serviceLength - 2) {
-            console.log(serviceLength);
-            arrowDown.classList.toggle("active");
-        }
-    } 
-});
-
-
-// функция для появления попапа при нажатии на кнопку
-
-serviceNavPopup.addEventListener("click", function () {
-    console.log("this.className"); // logs the className of my_element
-    servicePopup.classList.toggle("active");
-    setTimeout(() => {
-        servicePopup.classList.toggle("fade-in");
-    }, animationDuration);
-});
-
-// функция для появления попапа при нажатии на навигацию
-buttons.forEach(button => {
-    button.addEventListener("click", function () {
-        console.log("this.className"); // logs the className of my_element
-        servicePopup.classList.toggle("active");
-        setTimeout(() => {
-            servicePopup.classList.toggle("fade-in");
-        }, animationDuration);
+  setupEventListeners() {
+    // Навигация по кейсам
+    this.arrowUp?.addEventListener('click', () => this.navigateCase('up'));
+    this.arrowDown?.addEventListener('click', () => this.navigateCase('down'));
+    
+    // Переключение услуг
+    this.tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => this.switchService(index));
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', index === 0);
+      tab.setAttribute('tabindex', index === 0 ? '0' : '-1');
     });
-});
 
+    // Попап
+    this.buttons.forEach(button => {
+      button.addEventListener('click', () => this.togglePopup());
+    });
+    
+    // Попап на "связь"
+    this.serviceNavPopup.addEventListener('click', () => this.togglePopup());
+    
+    this.popupBackground?.addEventListener('click', () => this.togglePopup());
+    
+    // Клавиатурная навигация
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.servicePopup.classList.contains('active')) {
+        this.togglePopup();
+      }
+    });
+  }
 
+  setInitialStates() {
+    // Инициализация скролла
+    this.scrollable?.scrollTo(0, 100);
+    
+    // Установка начального состояния стрелок
+    this.updateArrowStates();
+  }
 
-function imgWidthEqualToHeight() {
-    // Находим элемент по классу
-    const serviceImages = document.querySelectorAll('.service-block__image--mobile');
-  
-    if (serviceImages.length > 0) {
-        // Перебираем каждый элемент
-        serviceImages.forEach(serviceImg => {
-          // Получаем текущую высоту элемента
-          const height = serviceImg.offsetHeight;
+  setupImageResizer() {
+    const resizeImages = () => {
+      const mobileImages = document.querySelectorAll('.service-block__image--mobile');
+      
+      mobileImages.forEach(img => {
+        const height = img.offsetHeight;
+        img.style.minWidth = `${height}px`;
+      });
+    };
 
-          // Устанавливаем ширину равной высоте
-          serviceImg.style.minWidth = `${height}px`;
-        });
+    window.addEventListener('DOMContentLoaded', resizeImages);
+    window.addEventListener('resize', resizeImages);
+  }
+
+  // Навигация по кейсам (вверх/вниз)
+  navigateCase(direction) {
+    if (direction === 'down' && this.currentCaseId < this.serviceWrappers.length - 1) {
+      this.currentCaseId++;
+    } else if (direction === 'up' && this.currentCaseId > 0) {
+      this.currentCaseId--;
     } else {
-        console.warn('Элементы .service-block__image--mobile не найдены');
+      return;
     }
-}
 
-// Вызываем функцию при загрузке страницы
-window.addEventListener('DOMContentLoaded', imgWidthEqualToHeight);
+    this.animateCaseTransition();
+    this.updateArrowStates();
+    this.updateAriaLiveRegion();
+  }
 
-// Также можно вызвать функцию при изменении размера окна
-window.addEventListener('resize', imgWidthEqualToHeight);
+  animateCaseTransition() {
+    const offset = `-${(this.serviceHeight - this.tabsHeight) * this.currentCaseId}px`;
+    
+    this.serviceWrappers.forEach(wrapper => {
+      wrapper.style.transform = `translateY(${offset})`;
+      wrapper.setAttribute('aria-hidden', !wrapper.classList.contains('service-block__wrapper--active'));
+    });
+  }
 
-// функция скрытия попапа при нажатии на фон
-servicePopupBackground.addEventListener("click", function () {
-    servicePopup.classList.toggle("fade-in");
+  updateArrowStates() {
+    // Вверх
+    if (this.currentCaseId === 0) {
+      this.arrowUp.classList.remove('active');
+      this.arrowUp.setAttribute('aria-disabled', 'true');
+    } else {
+      this.arrowUp.classList.add('active');
+      this.arrowUp.setAttribute('aria-disabled', 'false');
+    }
+
+    // Вниз
+    if (this.currentCaseId === this.serviceWrappers.length - 1) {
+      this.arrowDown.classList.remove('active');
+      this.arrowDown.setAttribute('aria-disabled', 'true');
+    } else {
+      this.arrowDown.classList.add('active');
+      this.arrowDown.setAttribute('aria-disabled', 'false');
+    }
+  }
+
+  // Переключение между услугами
+  switchService(serviceId) {
+    // Обновляем состояние вкладок
+    this.tabs.forEach((tab, index) => {
+      const isSelected = index === serviceId;
+      tab.classList.toggle('service-tab--active', isSelected);
+      tab.setAttribute('aria-selected', isSelected);
+      tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+    });
+
+    // Анимация перехода
+    this.animateServiceTransition(serviceId);
+  }
+
+  animateServiceTransition(newServiceId) {
+    const currentService = this.serviceBlocks[this.currentServiceId];
+    const newService = this.serviceBlocks[newServiceId];
+
+    if (currentService) {
+      currentService.classList.remove('active');
+      currentService.classList.add('fade-out');
+      
+      setTimeout(() => {
+        currentService.style.display = 'none';
+        currentService.classList.remove('fade-out');
+        
+        this.currentServiceId = newServiceId;
+        this.showNewService(newService);
+      }, this.animationDuration);
+    } else {
+      this.showNewService(newService);
+    }
+  }
+
+  showNewService(service) {
+    service.style.display = 'flex';
+    
     setTimeout(() => {
-        servicePopup.classList.toggle("active");
-    }, animationDuration);
-});
+      service.classList.add('fade-in');
+      service.classList.add('active');
+      service.focus();
+    }, 10);
+  }
 
-// функция смены блоков
-function serviceSwitch(serviceID) {
-    services[serviceActive].classList.remove("active");
-    services[serviceActive].classList.add("active");
-
-    // 2. Очищаем предыдущие анимационные классы
-    services[serviceActive].classList.remove("fade-in", "fade-out");
-
-    // 2. Запускаем анимацию исчезновения текущей панели
-    if (services[serviceActive]) {
-        services[serviceActive].classList.remove("active");
-        services[serviceActive].classList.add("fade-out");
-
-        // 3. После завершения анимации исчезновения
-        setTimeout(() => {
-            tabs[serviceActive].classList.toggle("service-tab--active");
-            services[serviceActive].classList.remove("fade-out");
-            services[serviceActive].style.display = "none";
-            serviceActive = serviceID;
-            tabs[serviceActive].classList.toggle("service-tab--active");
-            // 4. Показываем и анимируем появление новой панели
-            services[serviceActive].style.display = "flex";
-            setTimeout(() => {
-                services[serviceActive].classList.add("fade-in");
-                services[serviceActive].classList.add("active");
-            }, 10);
-            services[serviceActive].classList.remove("fade-in");
-        }, animationDuration);
+  // Управление попапом
+  togglePopup() {
+    const isOpening = !this.servicePopup.classList.contains('active');
+    
+    this.servicePopup.classList.toggle('active');
+    
+    if (isOpening) {
+      setTimeout(() => {
+        this.servicePopup.classList.add('fade-in');
+        this.servicePopup.setAttribute('aria-hidden', 'false');
+      }, this.animationDuration);
     } else {
-        // Если нет активной панели (первый запуск)
-        services[serviceActive].style.display = "flex";
-        services[serviceActive].classList.add("fade-in");
-        services[serviceActive].classList.add("active");
+      this.servicePopup.classList.remove('fade-in');
+      setTimeout(() => {
+        this.servicePopup.setAttribute('aria-hidden', 'true');
+      }, this.animationDuration);
     }
+    
+    // Управление focus при открытии/закрытии
+    if (isOpening) {
+      document.body.style.overflow = 'hidden';
+      this.servicePopup.querySelector('button, [href], input, select, textarea').focus();
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Обновление ARIA live region для скринридеров
+  updateAriaLiveRegion() {
+    const liveRegion = document.getElementById('aria-live-region') || this.createLiveRegion();
+    const currentCase = this.serviceWrappers[this.currentCaseId];
+    const caseTitle = currentCase.querySelector('.service-block__name')?.textContent || '';
+    
+    liveRegion.textContent = `Текущий кейс: ${caseTitle}`;
+  }
+
+  createLiveRegion() {
+    const region = document.createElement('div');
+    region.id = 'aria-live-region';
+    region.setAttribute('aria-live', 'polite');
+    region.setAttribute('aria-atomic', 'true');
+    region.style.position = 'absolute';
+    region.style.left = '-9999px';
+    document.body.appendChild(region);
+    return region;
+  }
 }
 
-tabs[0].onclick = () => {
-    serviceId = 0;
-    serviceSwitch(serviceId);
-};
-tabs[1].onclick = () => {
-    serviceId = 1;
-    serviceSwitch(serviceId);
-};
-tabs[2].onclick = () => {
-    serviceId = 2;
-    serviceSwitch(serviceId);
-};
-tabs[3].onclick = () => {
-    serviceId = 3;
-    serviceSwitch(serviceId);
-};
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+  new ServicePage();
+});
