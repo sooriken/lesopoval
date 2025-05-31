@@ -49,6 +49,9 @@
         line-height: 32px
         transition: all .4s linear
         cursor: pointer
+        width: 100%
+        background-color: transparent
+        border: none
     &-block
         flex-grow: 1
         padding: 64px 32px
@@ -80,6 +83,9 @@
             transform: translateX(-50%) rotate(-45deg)
             cursor: pointer
             display: none
+            background-color: transparent
+            border-left: none
+            border-bottom: none
             &--down
                 top: auto
                 bottom: 24px
@@ -127,6 +133,7 @@
                 overflow-y: scroll
                 -ms-overflow-style: none
                 scrollbar-width: none
+                line-height: 1.4
                 &::-webkit-scrollbar
                     display: none
             &:first-child
@@ -194,6 +201,10 @@
             margin-bottom: 16px
             &:last-child
                 margin-bottom: 0
+            &-group
+                margin-bottom: 16px
+        &__button
+            margin: 0 auto
         &.active
             display: block
         &.fade-in

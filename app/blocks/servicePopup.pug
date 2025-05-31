@@ -1,14 +1,47 @@
 mixin servicePopup
-    .service-popup
-        .service-popup__background
-        .service-popup__inner
-            .service-popup__form
-                label.service-popup__label(for="popupName") Имя
-                input.service-popup__textform.textform(type="text" name="popupName" id="popupName")
-            .service-popup__form
-                label.service-popup__label(for="popupPhone") Номер
-                input.service-popup__textform.textform(type="phone" name="popupPhone" id="popupPhone")
-            .service-popup__form
-                label.service-popup__label(for="popupService") Услуга
-                input.service-popup__textform.textform(type="text" name="popupService" id="popupService")
-                  
+  //- Основной контейнер попапа
+  .service-popup(role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="popupTitle")
+    //- Кликабельный оверлей
+    .service-popup__background(aria-label="Закрыть модальное окно")
+    
+    //- Контент попапа
+    .service-popup__inner
+      //- Заголовок для скринридеров
+      h2.service-popup__title#popupTitle(style="display: none") Форма заказа услуги
+      
+      //- Форма
+      .service-popup__form
+        .service-popup__form-group
+          label.service-popup__label(for="popupName") Имя
+          input.service-popup__textform.textform(
+            type="text"
+            name="name"
+            id="popupName"
+            placeholder="Ваше имя"
+          )
+        
+        .service-popup__form-group
+          label.service-popup__label(for="popupPhone") Телефон
+          input.service-popup__textform.textform(
+            type="tel"
+            name="phone"
+            id="popupPhone"
+            pattern="\+7\s?[\(]{0,1}\d{3}[\)]{0,1}\s?\d{3}[\-]{0,1}\d{2}[\-]{0,1}\d{2}"
+            placeholder="+7 (___) ___-__-__"
+            inputmode="tel"
+            maxlength="18"
+            required
+            data-phone-pattern="+7 (___) ___-__-__"
+            data-mask="+7 (###) ###-##-##"
+          )
+        
+        .service-popup__form-group
+          label.service-popup__label(for="popupService") Услуга
+          input.service-popup__textform.textform(
+            type="text"
+            name="service"
+            id="popupService"
+            placeholder="Название услуги"
+          )
+        
+        button.service-popup__button.button(type="button") Отправить

@@ -1,231 +1,176 @@
-// Service Page Controller
+console.log("Вы попали на страницу service");
+import module from './modules/popup.js';
 
-class ServicePage {
-  constructor() {
-    this.init();
-  }
+let serviceActive = 0;
+let services = document.getElementsByClassName("service-block");
+let tabs = document.getElementsByClassName("service-tab");
+const animationDuration = 400;
 
-  init() {
-    console.log('Service page initialized');
-    this.cacheElements();
-    this.setupEventListeners();
-    this.setInitialStates();
-    this.setupImageResizer();
-  }
+// Объект для хранения состояния кейсов каждого блока
+const blockStates = {};
 
-  cacheElements() {
-    // Основные элементы управления
-    this.serviceBlocks = document.querySelectorAll('.service-block');
-    this.tabs = document.querySelectorAll('.service-tab');
-    this.scrollable = document.querySelector('.service-block__image-inner');
-    this.buttons = document.querySelectorAll('.service-block__button');
-    this.servicePopup = document.querySelector('.service-popup');
-    this.popupBackground = document.querySelector('.service-popup__background');
-    this.serviceNavPopup = document.querySelector('.services-nav__link');
-    
-    // Навигация по кейсам
-    this.arrowUp = document.querySelector('.service-block__arrow--up');
-    this.arrowDown = document.querySelector('.service-block__arrow--down');
-    this.serviceWrappers = document.querySelectorAll('.service-block__wrapper');
-    
-    // Состояние
-    this.currentServiceId = 0;
-    this.currentCaseId = 0;
-    this.animationDuration = 400;
-    this.serviceHeight = this.serviceBlocks[0]?.offsetHeight || 0;
-    this.tabsHeight = this.tabs[0]?.offsetHeight || 0;
-  }
-
-  setupEventListeners() {
-    // Навигация по кейсам
-    this.arrowUp?.addEventListener('click', () => this.navigateCase('up'));
-    this.arrowDown?.addEventListener('click', () => this.navigateCase('down'));
-    
-    // Переключение услуг
-    this.tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => this.switchService(index));
-      tab.setAttribute('role', 'tab');
-      tab.setAttribute('aria-selected', index === 0);
-      tab.setAttribute('tabindex', index === 0 ? '0' : '-1');
-    });
-
-    // Попап
-    this.buttons.forEach(button => {
-      button.addEventListener('click', () => this.togglePopup());
-    });
-    
-    // Попап на "связь"
-    this.serviceNavPopup.addEventListener('click', () => this.togglePopup());
-    
-    this.popupBackground?.addEventListener('click', () => this.togglePopup());
-    
-    // Клавиатурная навигация
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.servicePopup.classList.contains('active')) {
-        this.togglePopup();
-      }
-    });
-  }
-
-  setInitialStates() {
-    // Инициализация скролла
-    this.scrollable?.scrollTo(0, 100);
-    
-    // Установка начального состояния стрелок
-    this.updateArrowStates();
-  }
-
-  setupImageResizer() {
-    const resizeImages = () => {
-      const mobileImages = document.querySelectorAll('.service-block__image--mobile');
-      
-      mobileImages.forEach(img => {
-        const height = img.offsetHeight;
-        img.style.minWidth = `${height}px`;
-      });
+// Инициализация состояний для каждого блока
+Array.from(services).forEach((service, index) => {
+    blockStates[index] = {
+        caseId: 0,
+        cases: service.querySelectorAll('.service-block__wrapper'),
+        arrowUp: service.querySelector('.service-block__arrow--up'),
+        arrowDown: service.querySelector('.service-block__arrow--down')
     };
-
-    window.addEventListener('DOMContentLoaded', resizeImages);
-    window.addEventListener('resize', resizeImages);
-  }
-
-  // Навигация по кейсам (вверх/вниз)
-  navigateCase(direction) {
-    if (direction === 'down' && this.currentCaseId < this.serviceWrappers.length - 1) {
-      this.currentCaseId++;
-    } else if (direction === 'up' && this.currentCaseId > 0) {
-      this.currentCaseId--;
-    } else {
-      return;
-    }
-
-    this.animateCaseTransition();
-    this.updateArrowStates();
-    this.updateAriaLiveRegion();
-  }
-
-  animateCaseTransition() {
-    const offset = `-${(this.serviceHeight - this.tabsHeight) * this.currentCaseId}px`;
     
-    this.serviceWrappers.forEach(wrapper => {
-      wrapper.style.transform = `translateY(${offset})`;
-      wrapper.setAttribute('aria-hidden', !wrapper.classList.contains('service-block__wrapper--active'));
-    });
-  }
-
-  updateArrowStates() {
-    // Вверх
-    if (this.currentCaseId === 0) {
-      this.arrowUp.classList.remove('active');
-      this.arrowUp.setAttribute('aria-disabled', 'true');
-    } else {
-      this.arrowUp.classList.add('active');
-      this.arrowUp.setAttribute('aria-disabled', 'false');
+    // Изначально скрываем стрелки для неактивных блоков
+    if (index !== 0) {
+        blockStates[index].arrowUp.style.display = 'none';
+        blockStates[index].arrowDown.style.display = 'none';
     }
+});
 
-    // Вниз
-    if (this.currentCaseId === this.serviceWrappers.length - 1) {
-      this.arrowDown.classList.remove('active');
-      this.arrowDown.setAttribute('aria-disabled', 'true');
-    } else {
-      this.arrowDown.classList.add('active');
-      this.arrowDown.setAttribute('aria-disabled', 'false');
-    }
-  }
+let serviceHeight = document.querySelector('.service-block').offsetHeight;
+let tabsHeight = document.querySelector('.service-tab').offsetHeight;
+let contentHeight = ("-" + (serviceHeight - tabsHeight) + "px");
 
-  // Переключение между услугами
-  switchService(serviceId) {
-    // Обновляем состояние вкладок
-    this.tabs.forEach((tab, index) => {
-      const isSelected = index === serviceId;
-      tab.classList.toggle('service-tab--active', isSelected);
-      tab.setAttribute('aria-selected', isSelected);
-      tab.setAttribute('tabindex', isSelected ? '0' : '-1');
-    });
-
-    // Анимация перехода
-    this.animateServiceTransition(serviceId);
-  }
-
-  animateServiceTransition(newServiceId) {
-    const currentService = this.serviceBlocks[this.currentServiceId];
-    const newService = this.serviceBlocks[newServiceId];
-
-    if (currentService) {
-      currentService.classList.remove('active');
-      currentService.classList.add('fade-out');
-      
-      setTimeout(() => {
-        currentService.style.display = 'none';
-        currentService.classList.remove('fade-out');
-        
-        this.currentServiceId = newServiceId;
-        this.showNewService(newService);
-      }, this.animationDuration);
-    } else {
-      this.showNewService(newService);
-    }
-  }
-
-  showNewService(service) {
-    service.style.display = 'flex';
+// Общая функция для обновления стрелок
+function updateArrows(blockIndex) {
+    const state = blockStates[blockIndex];
+    const casesLength = state.cases.length;
     
-    setTimeout(() => {
-      service.classList.add('fade-in');
-      service.classList.add('active');
-      service.focus();
-    }, 10);
-  }
-
-  // Управление попапом
-  togglePopup() {
-    const isOpening = !this.servicePopup.classList.contains('active');
-    
-    this.servicePopup.classList.toggle('active');
-    
-    if (isOpening) {
-      setTimeout(() => {
-        this.servicePopup.classList.add('fade-in');
-        this.servicePopup.setAttribute('aria-hidden', 'false');
-      }, this.animationDuration);
+    // Стрелка вверх
+    if (state.caseId === 0) {
+        state.arrowUp.style.display = 'none';
     } else {
-      this.servicePopup.classList.remove('fade-in');
-      setTimeout(() => {
-        this.servicePopup.setAttribute('aria-hidden', 'true');
-      }, this.animationDuration);
+        state.arrowUp.style.display = 'block';
     }
     
-    // Управление focus при открытии/закрытии
-    if (isOpening) {
-      document.body.style.overflow = 'hidden';
-      this.servicePopup.querySelector('button, [href], input, select, textarea').focus();
+    // Стрелка вниз
+    if (state.caseId >= casesLength - 1) {
+        state.arrowDown.style.display = 'none';
     } else {
-      document.body.style.overflow = '';
+        state.arrowDown.style.display = 'block';
     }
-  }
-
-  // Обновление ARIA live region для скринридеров
-  updateAriaLiveRegion() {
-    const liveRegion = document.getElementById('aria-live-region') || this.createLiveRegion();
-    const currentCase = this.serviceWrappers[this.currentCaseId];
-    const caseTitle = currentCase.querySelector('.service-block__name')?.textContent || '';
-    
-    liveRegion.textContent = `Текущий кейс: ${caseTitle}`;
-  }
-
-  createLiveRegion() {
-    const region = document.createElement('div');
-    region.id = 'aria-live-region';
-    region.setAttribute('aria-live', 'polite');
-    region.setAttribute('aria-atomic', 'true');
-    region.style.position = 'absolute';
-    region.style.left = '-9999px';
-    document.body.appendChild(region);
-    return region;
-  }
 }
 
-// Инициализация при загрузке страницы
-document.addEventListener('DOMContentLoaded', () => {
-  new ServicePage();
+// Функция слистывания кейсов
+function setupCaseNavigation(blockIndex) {
+    const state = blockStates[blockIndex];
+    
+    state.arrowUp.addEventListener("click", function() {
+        if (state.caseId > 0) {
+            state.caseId--;
+            state.cases.forEach(caseBlock => {
+                const newHeight = ("-" + ((serviceHeight - tabsHeight) * state.caseId) + "px");
+                caseBlock.style.transform = `translateY(${newHeight})`;
+            });
+            updateArrows(blockIndex);
+        }
+    });
+    
+    state.arrowDown.addEventListener("click", function() {
+        if (state.caseId < state.cases.length - 1) {
+            state.caseId++;
+            state.cases.forEach(caseBlock => {
+                const newHeight = ("-" + ((serviceHeight - tabsHeight) * state.caseId) + "px");
+                caseBlock.style.transform = `translateY(${newHeight})`;
+            });
+            updateArrows(blockIndex);
+        }
+    });
+}
+
+// Инициализация навигации по кейсам для всех блоков
+Array.from(services).forEach((_, index) => {
+    setupCaseNavigation(index);
 });
+
+// Остальной код (попапы, ресайзы и т.д.) остается без изменений
+let scrollable = document.querySelector('.service-block__image-inner');
+scrollable.scrollTo(0, 100);
+let buttons = document.querySelectorAll('.service-block__button');
+let servicePopup = document.querySelector('.service-popup');
+let servicePopupBackground = document.querySelector('.service-popup__background');
+let serviceNavPopup = document.querySelector('.services-nav__link');
+
+// функция для появления попапа при нажатии на кнопку
+serviceNavPopup.addEventListener("click", function () {
+    servicePopup.classList.toggle("active");
+    setTimeout(() => {
+        servicePopup.classList.toggle("fade-in");
+    }, animationDuration);
+});
+
+buttons.forEach(button => {
+    button.addEventListener("click", function () {
+        servicePopup.classList.toggle("active");
+        setTimeout(() => {
+            servicePopup.classList.toggle("fade-in");
+        }, animationDuration);
+    });
+});
+
+function imgWidthEqualToHeight() {
+    const serviceImages = document.querySelectorAll('.service-block__image--mobile');
+    serviceImages.forEach(serviceImg => {
+        const height = serviceImg.offsetHeight;
+        serviceImg.style.minWidth = `${height}px`;
+    });
+}
+
+window.addEventListener('DOMContentLoaded', imgWidthEqualToHeight);
+window.addEventListener('resize', imgWidthEqualToHeight);
+
+servicePopupBackground.addEventListener("click", function () {
+    servicePopup.classList.toggle("fade-in");
+    setTimeout(() => {
+        servicePopup.classList.toggle("active");
+    }, animationDuration);
+});
+
+// Модифицированная функция смены блоков
+function serviceSwitch(serviceID) {
+    const prevState = blockStates[serviceActive];
+    const newState = blockStates[serviceID];
+    
+    // Скрываем стрелки предыдущего блока
+    prevState.arrowUp.style.display = 'none';
+    prevState.arrowDown.style.display = 'none';
+    
+    services[serviceActive].classList.remove("active");
+    services[serviceActive].classList.add("active");
+    services[serviceActive].classList.remove("fade-in", "fade-out");
+
+    if (services[serviceActive]) {
+        services[serviceActive].classList.remove("active");
+        services[serviceActive].classList.add("fade-out");
+
+        setTimeout(() => {
+            tabs[serviceActive].classList.toggle("service-tab--active");
+            services[serviceActive].classList.remove("fade-out");
+            services[serviceActive].style.display = "none";
+            
+            serviceActive = serviceID;
+            tabs[serviceActive].classList.toggle("service-tab--active");
+            
+            // Показываем стрелки нового блока
+            updateArrows(serviceActive);
+            
+            services[serviceActive].style.display = "flex";
+            setTimeout(() => {
+                services[serviceActive].classList.add("fade-in");
+                services[serviceActive].classList.add("active");
+            }, 10);
+            services[serviceActive].classList.remove("fade-in");
+        }, animationDuration);
+    } else {
+        services[serviceActive].style.display = "flex";
+        services[serviceActive].classList.add("fade-in");
+        services[serviceActive].classList.add("active");
+    }
+}
+
+Array.from(tabs).forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+        serviceSwitch(index);
+    });
+});
+
+// Инициализация стрелок для первого блока
+updateArrows(0);

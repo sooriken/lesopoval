@@ -1,0 +1,108 @@
+$colorMain:  #154430 
+$colorGreen: #1E5A3E 
+$colorLight: #F5F5F5
+$colorWhite: #FFFFFF
+$colorDark:  #333333
+$colorGold:  #FFD700 
+$colorBrown: #A0522D 
+
+@media (max-width: 1000px)
+    .service
+        &__inner
+            padding: 40px
+        &-description
+            &__inner
+                flex-direction: column
+        &-mobile
+            &__tabs
+                display: flex
+                overflow-x: scroll
+                min-height: 60px
+                width: 100%
+                -ms-overflow-style: none
+                scrollbar-width: none
+                &::-webkit-scrollbar
+                    display: none
+            &__tab
+                flex: 0 0 25% // Равномерное распределение для 4 табов
+                border: 2px solid $colorMain
+                color: $colorMain
+                padding: 20px 10px // Уменьшил padding для лучшего отображения
+                line-height: 20px
+                min-height: 60px
+                white-space: nowrap
+                border-right: none
+                border-bottom: none
+                text-align: center
+                font-size: 14px // Уменьшил шрифт для 4 табов
+                &:nth-child(4) // Последний 4-й таб
+                    border-right: 2px solid $colorMain
+                &--active
+                    background-color: $colorMain
+                    color: $colorLight
+        &-block
+            max-height: calc(100vh - 224px)
+            width: 100%
+            &__wrapper
+                min-height: calc(100vh - 352px)
+                display: flex
+                flex-direction: column
+            &__inner
+                max-width: 100%
+                max-height: 80%
+            &__image
+                &--mobile
+                    margin: 0px 32px 0px 0px
+                    min-height: 224px
+                    flex: 0 0 80% // Ширина изображений в слайдере
+                    display: -o-flex
+                    display: flex
+                    &:last-child
+                        margin-right: 0
+                &-inner
+                    display: none
+                    &--mobile
+                        flex-grow: 1
+                        overflow-y: visible
+                        overflow-x: scroll
+                        display: flex
+                        width: 100%
+                        padding-bottom: 10px // Для скролла
+            &__img
+                &--mobile
+                    width: 100%
+                    height: auto
+                    object-fit: cover
+        &-tabs
+            display: flex
+            overflow-x: scroll
+            min-height: 60px
+            width: 100%
+            -ms-overflow-style: none
+            scrollbar-width: none
+            &::-webkit-scrollbar
+                display: none
+        &-tab
+            flex: 0 0 25% // Равномерное распределение для 4 табов
+            border: 2px solid $colorMain
+            color: $colorMain
+            padding: 20px 10px // Уменьшил padding для лучшего отображения
+            line-height: 20px
+            min-height: 60px
+            white-space: nowrap
+            border-right: none
+            border-bottom: none
+            text-align: center
+            font-size: 14px // Уменьшил шрифт для 4 табов
+            &:nth-child(4) // Последний 4-й таб
+                border-right: 2px solid $colorMain
+            &--active
+                background-color: $colorMain
+                color: $colorLight
+
+.mobile-menu
+    display: none
+    background: transparent
+    border: none
+    cursor: pointer
+    z-index: 1001
