@@ -39,13 +39,32 @@ $desktop-xlarge: 1920px
         @media (min-width: $desktop-xlarge)
             @content
 
+// font-size
+html
+    font-size: 16px
+    +respond-to(xlarge)
+        font-size: 20px
+    +respond-to(large)
+        font-size: 16px
+    +respond-to(desktop)
+        font-size: 12px
+    +respond-to(tablet)
+        font-size: 8.5px
+    +respond-to(medium)
+        font-size: 6.4px
+    +respond-to(small)
+        font-size: 4.17px
+    +respond-to(xsmall)
+        font-size: 3.3px
+        //font-size: 2.5px
+    
 // Базовые адаптивные стили
 .container
     padding: 0 160px
     +respond-to(desktop)
-        padding: 0 120px
-    +respond-to(tablet)
         padding: 0 80px
+    +respond-to(tablet)
+        padding: 0 60px
     +respond-to(medium)
         padding: 0 40px
     +respond-to(small)
@@ -128,9 +147,9 @@ $desktop-xlarge: 1920px
 
     &__nav
         +respond-to(desktop)
-            padding: 16px 120px
-        +respond-to(tablet)
             padding: 16px 80px
+        +respond-to(tablet)
+            padding: 16px 60px
         +respond-to(medium)
             padding: 16px 40px
             flex-direction: column
@@ -159,9 +178,9 @@ $desktop-xlarge: 1920px
 
     &__inner
         +respond-to(desktop)
-            padding: 0 120px
-        +respond-to(tablet)
             padding: 0 80px
+        +respond-to(tablet)
+            padding: 0 60px
         +respond-to(medium)
             padding: 20px 40px
             text-align: center
@@ -203,9 +222,9 @@ $desktop-xlarge: 1920px
 // Services блок с новым брейкпоинтом 500px
 .services
     +respond-to(desktop)
-        padding: 80px 120px
-    +respond-to(tablet)
         padding: 60px 80px
+    +respond-to(tablet)
+        padding: 40px 60px
         &__inner
             grid-template-columns: repeat(2, 1fr)
     +respond-to(medium)  // 500px и меньше - 1 колонка
@@ -239,9 +258,9 @@ $desktop-xlarge: 1920px
 // Gallery блок с исправленными стрелками
 .gallery
     +respond-to(desktop)
-        padding: 80px 120px
-    +respond-to(tablet)
         padding: 60px 80px
+    +respond-to(tablet)
+        padding: 40px 60px
     +respond-to(medium)
         padding: 40px
     +respond-to(small)
@@ -305,9 +324,9 @@ $desktop-xlarge: 1920px
     &__inner
         padding: 60px 160px
         +respond-to(desktop)
-            padding: 50px 120px
+            padding: 60px 80px
         +respond-to(tablet)
-            padding: 40px 80px
+            padding: 40px 60px
         +respond-to(medium)
             padding: 30px 40px
         +respond-to(small)
@@ -324,7 +343,7 @@ $desktop-xlarge: 1920px
             color: $colorLight
 
     &__title
-        font-size: 2.2rem
+        font-size: 1.618rem
         font-weight: bold
         margin-bottom: 25px
         +respond-to(desktop)
@@ -348,7 +367,7 @@ $desktop-xlarge: 1920px
             font-size: 2.6rem
 
     &__description
-        font-size: 1.1rem
+        font-size: 1rem
         margin-top: 12px
         line-height: 1.5
         +respond-to(desktop)
@@ -404,9 +423,9 @@ $desktop-xlarge: 1920px
 // Feedback блок
 .feedback
     +respond-to(desktop)
-        padding: 80px 120px
-    +respond-to(tablet)
         padding: 60px 80px
+    +respond-to(tablet)
+        padding: 40px 60px
     +respond-to(medium)
         padding: 40px
     +respond-to(small)
@@ -431,9 +450,9 @@ $desktop-xlarge: 1920px
 // Footer блок
 .footer
     +respond-to(desktop)
-        padding: 20px 120px
-    +respond-to(tablet)
         padding: 20px 80px
+    +respond-to(tablet)
+        padding: 20px 60px
     +respond-to(medium)
         padding: 20px
         flex-direction: column

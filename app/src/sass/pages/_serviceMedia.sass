@@ -10,6 +10,7 @@ $colorBrown: #A0522D
     .service
         &__inner
             padding: 40px
+            max-width: 100vw
         &-description
             &__inner
                 flex-direction: column
@@ -54,11 +55,15 @@ $colorBrown: #A0522D
                 &--mobile
                     margin: 0px 32px 0px 0px
                     min-height: 224px
-                    flex: 0 0 80% // Ширина изображений в слайдере
+                    //flex: 0 0 80% // Ширина изображений в слайдере
                     display: -o-flex
                     display: flex
+                    aspect-ratio: 1 / 1
                     &:last-child
                         margin-right: 0
+                &-wrapper
+                    overflow: hidden
+                    margin-top: 16px
                 &-inner
                     display: none
                     &--mobile
@@ -68,6 +73,7 @@ $colorBrown: #A0522D
                         display: flex
                         width: 100%
                         padding-bottom: 10px // Для скролла
+                        margin: 0
             &__img
                 &--mobile
                     width: 100%

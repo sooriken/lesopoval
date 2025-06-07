@@ -121,16 +121,17 @@ body
                     ) Заказать услугу
                 
                 //- Блок картинок для мобильных устройств
-                figure.service-block__image-inner.service-block__image-inner--mobile(aria-label="Фотографии выполненных работ (мобильная версия)")
-                  each img, index in [1, 2, 3, 4]
-                    .service-block__image.service-block__image--mobile
-                      img.service-block__img.service-block__img--mobile(
-                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
-                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
-                        loading="lazy"
-                        width="300"
-                        height="300"
-                      )
+                .service-block__image-wrapper.service-block__image-wrapper--mobile
+                  figure.service-block__image-inner.service-block__image-inner--mobile(aria-label="Фотографии выполненных работ (мобильная версия)")
+                    each img, index in [1, 2, 3, 4]
+                      .service-block__image.service-block__image--mobile
+                        img.service-block__img.service-block__img--mobile(
+                          src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                          alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                          loading="lazy"
+                          width="300"
+                          height="300"
+                        )
               
               //- Второй кейс
               article.service-block__wrapper(
@@ -171,16 +172,17 @@ body
                       itemprop="url"
                     ) Заказать услугу
                 //- Блок картинок для мобильных устройств
-                figure.service-block__image-inner.service-block__image-inner--mobile(aria-label="Фотографии выполненных работ (мобильная версия)")
-                  each img, index in [1, 2, 3, 4]
-                    .service-block__image.service-block__image--mobile
-                      img.service-block__img.service-block__img--mobile(
-                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
-                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
-                        loading="lazy"
-                        width="300"
-                        height="300"
-                      )
+                .service-block__image-wrapper.service-block__image-wrapper--mobile
+                  figure.service-block__image-inner.service-block__image-inner--mobile(aria-label="Фотографии выполненных работ (мобильная версия)")
+                    each img, index in [1, 2, 3, 4]
+                      .service-block__image.service-block__image--mobile
+                        img.service-block__img.service-block__img--mobile(
+                          src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                          alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                          loading="lazy"
+                          width="300"
+                          height="300"
+                        )
               
               button.service-block__arrow.service-block__arrow--down.active(
                 aria-label="Следующий кейс"
