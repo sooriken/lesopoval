@@ -1,4 +1,5 @@
 console.log("Вы попали на страницу service");
+import module from './modules/popup.js';
 
 let serviceActive = 0;
 let services = document.getElementsByClassName("service-block");

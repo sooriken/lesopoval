@@ -1,4 +1,5 @@
 include ./blocks/welcome
+include ./blocks/reviews
 include ./blocks/services
 include ./blocks/about
 include ./blocks/gallery
@@ -26,8 +27,9 @@ html(lang="ru")
 
 body  
     header.page    
-        +welcome
+        //+welcome
         main
+            +reviews
             +services
             +about
             +gallery

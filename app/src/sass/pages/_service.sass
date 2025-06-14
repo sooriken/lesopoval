@@ -1,178 +1,25 @@
-.service
-    flex-grow: 1
-    display: flex
-    justify-content: space-between
-    position: relative
-    &__inner
-        padding: 40px 160px 
-        flex-grow: 1
-        display: flex
-        justify-content: space-between
-        max-height: calc(100vh - 64px)
-    &-item
-        padding: 16px
-        width: 80%
-        margin: 0 auto
-        padding: 16px
-        display: none
-        &__image
-            height: 30%
-            width: 100%
-            overflow: hidden
-            position: relative
-        &__img
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
-    &-description
+.service    
+    &__welcome
         width: 100%
-        max-height: calc(100vh - 144px)
+        height: calc(100vh - 80px)
+        background-image: url(../../images-min/welcome/welcome.png) 
         display: flex
         flex-direction: column
-        &__title
-            font-size: 3rem
-            text-transform: uppercase
-            text-align: center
-            font-weight: bold
-            margin-left: auto
-            margin-bottom: 40px
-            //max-width: 70%
-        &__inner
-            display: flex
-            position: relative
-            flex-grow: 1
-            max-height: calc(100vh - 144px)
-    &-tab
-        white-space: nowrap
-        padding: 16px 64px 16px 16px
-        line-height: 32px
-        transition: all .4s linear
-        cursor: pointer
-        width: 100%
-        background-color: transparent
-        border: none
-    &-block
-        flex-grow: 1
-        padding: 64px 32px
-        display: none
-        opacity: 0
-        transition: all .4s ease
-        overflow: hidden
-        position: relative
-        flex-direction: column
-        &--active
-            display: flex
-            opacity: 1
-            transition: all .4s ease
-        &.fade-out
-            display: flex
-            opacity: 0
-        &.fade-in
-            display: flex
-            opacity: 1
-        &.active
-            display: flex
-            opacity: 1
-        &__arrow
-            width: 32px
-            height: 32px
-            position: absolute
-            left: 50%
-            top: 24px
-            transform: translateX(-50%) rotate(-45deg)
-            cursor: pointer
-            display: none
-            background-color: transparent
-            border-left: none
-            border-bottom: none
-            &--down
-                top: auto
-                bottom: 24px
-                transform: translateX(-50%) rotate(135deg)
-            &.active
-                display: block
-        &__image
-            flex-grow: 1
-            aspect-ratio: 9 / 16
-            position: relative
-            overflow: hidden
-            margin: 0 32px 32px 0
-            &:last-child
-                margin-bottom: 0
-            &-inner
-                flex-grow: 1
-                overflow-y: scroll
-                -ms-overflow-style: none
-                scrollbar-width: none
-                &::-webkit-scrollbar
-                    display: none
-        &__img
-            position: absolute
-            top: 50%
-            left: 50%
-            transform: translate(-50%, -50%)
-            height: 110%
-            width: auto
-        &__inner
-            //flex-grow: 1
-            max-width: 60%
-            display: flex
-            flex-direction: column
-        &__name
-            font-family: "Montserrat", sans-serif
-            font-size: 1.5rem
-            padding-left: 32px
-            font-weight: bold
-            line-height: 1.25
-            margin-bottom: 16px
-        &__description
-            margin-top: 16px
-            line-height: 1.4
-            &-inner
-                flex-grow: 1
-                overflow-y: scroll
-                -ms-overflow-style: none
-                scrollbar-width: none
-                line-height: 1.4
-                &::-webkit-scrollbar
-                    display: none
-            &:first-child
-                margin-top: 0
-        &__button-inner
-            //flex-grow: 1
-            display: flex
-            flex-direction: column
-            justify-content: flex-end
-        &--order
-            .service-block__inner
-                max-width: 100%
-        &--example
-            .service-block__inner
-                max-width: 100%
-        &__form
-            margin-top: 16px
-        &__label
-            font-weight: bold
-            margin-bottom: 8px
-        &__button
+        justify-content: center
+        &-title
             margin: 0 auto
-            &-inner
-                margin-top: 32px
-                display: flex
-        &__images
-            display: grid
-            grid-template-columns: 1fr 1fr 1fr
-            grid-column-gap: 32px
-            margin-top: 16px
-            .service-block__image
-                margin-right: 0
-        &__wrapper
-            display: flex
-            height: calc(100vh - 272px)
-            margin-bottom: 64px
-            transform: translateY(0)
-            transition: all .4s linear
+            font-size: 2.618rem 
+            font-weight: bold
+            position: relative
+            margin-top: 0    
+            text-transform: uppercase
+            //mix-blend-mode: difference
+        &-subtitle
+            margin: 16px auto 64px
+            font-size: 1rem
+            position: relative
+            //mix-blend-mode: screen
+            //z-index: 20
     // popup
     &-popup
         position: absolute

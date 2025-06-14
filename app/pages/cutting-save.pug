@@ -1,0 +1,646 @@
+include ../blocks/servicesNav
+include ../blocks/footer
+include ../blocks/servicePopup
+
+doctype html
+html(lang="ru")
+    head
+        meta(charset="utf-8")    
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="description" content="Профессиональные услуги по спиливанию аварийных деревьев. Специалисты с опытом работы с 2017 года.")
+        title Услуги по спиливанию аварийных деревьев | Лесозаготовительная компания
+        //- Preload critical resources
+        link(rel="preload" href="../../css-min/style.min.css" as="style")
+        link(rel="preload" href="../js-bundle/service.bundle.js" as="script")
+        // default css
+        link(rel="stylesheet" href="../../css-min/default.min.css")
+        // normalize css
+        link(rel="stylesheet" href="../../css-min/normalize.min.css")
+        // style css
+        link(rel="stylesheet" href="../../css-min/style.min.css")
+        // fonts
+        link(rel="preconnect" href="https://fonts.googleapis.com")
+        link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+        link(href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet")
+        
+body  
+  .page(itemscope itemtype="https://schema.org/WebPage")
+    +servicesNav
+    main.service(itemscope itemtype="https://schema.org/Service")
+      .service__inner
+        article.service-description(itemprop="description")
+          .service-description__inner
+            //- Табы для навигации
+            nav.service-tabs(role="tablist" aria-label="Виды услуг по спиливанию деревьев")
+              button.service-tab.service-tab--active(
+                role="tab"
+                aria-selected="true"
+                aria-controls="service-full"
+                tabindex="0"
+                id="tab-full"
+              ) Спил целиком
+              
+              button.service-tab(
+                role="tab"
+                aria-selected="false"
+                aria-controls="service-parts"
+                tabindex="-1"
+                id="tab-parts"
+              ) Спил частями
+              
+              button.service-tab(
+                role="tab"
+                aria-selected="false"
+                aria-controls="service-emergency"
+                tabindex="-1"
+                id="tab-emergency"
+              ) Спил аварийных
+              
+              button.service-tab(
+                role="tab"
+                aria-selected="false"
+                aria-controls="service-fallen"
+                tabindex="-1"
+                id="tab-fallen"
+              ) Удаление рухнувших
+              
+            //- Блок "Спил целиком"
+            section.service-block.service-block--active(
+              id="service-full"
+              role="tabpanel"
+              aria-labelledby="service-full"
+              tabindex="0"
+              itemprop="hasOfferCatalog"
+              itemscope
+              itemtype="https://schema.org/OfferCatalog"
+            )
+              button.service-block__arrow.service-block__arrow--up(
+                data-block-index="0"
+                aria-label="Предыдущий кейс"
+               )
+              
+              //- Первый кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                //- Блок картинок для десктоп
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2, 3, 4]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                //- Текстовый блок
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") 1Удаление аварийной, вывернутой с корня крупной березы, застрявшей прямо над крышей дома соседей. Была удалена без повреждения имущества.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты оперативно ликвидировали сложный случай — #[strong крупную березу, вывернутую с корнями ураганом], которая зависла над крышей жилого дома. Дерево находилось в крайне неустойчивом положении: его падение могло повредить кровлю, электропроводку и припаркованные автомобили. Мы:
+                    ul
+                      li #[strong Разработали поэтапный план] с учетом рисков;
+                      li #[strong Применили метод контролируемого спиливания] с завешиванием ветвей;
+                      li #[strong Использовали автовышку и альпинистское оборудование] для точной работы;
+                      li #[strong Аккуратно утилизировали ствол и ветви] без повреждения имущества.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (включена аренда спецтехники и утилизация)
+                    p #[strong Затраченное время:] Y часов (с учетом сложного доступа)
+                    p #[strong Итог:] Дерево удалено безопасно, соседские постройки сохранены.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу спила целиком"
+                      itemprop="url"
+                    ) Заказать услугу
+                
+                //- Блок картинок для мобильных устройств
+                .service-block__image-wrapper.service-block__image-wrapper--mobile
+                  figure.service-block__image-inner.service-block__image-inner--mobile(aria-label="Фотографии выполненных работ (мобильная версия)")
+                    each img, index in [1, 2, 3, 4]
+                      .service-block__image.service-block__image--mobile
+                        img.service-block__img.service-block__img--mobile(
+                          src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                          alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                          loading="lazy"
+                          width="300"
+                          height="300"
+                        )
+              
+              //- Второй кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/second/${index + 1}.jpeg`
+                        alt=`Пример удаления деревьев в канаве шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") Удаление аварийных деревьев в канаве, получивших уклон на строящийся дом после оборудования канавы в близи их корней.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты выполнили #[strong срочное удаление деревьев], которые стали опасными после работ по обустройству дренажной канавы. Корневая система была повреждена, что вызвало критический наклон стволов в сторону строящегося дома. Для решения проблемы мы:
+                    ul
+                      li #[strong Провели экспертизу устойчивости] каждого дерева;
+                      li #[strong Применили комбинированную методику] – спил частями с контролируемым опусканием ветвей;
+                      li #[strong Использовали малую спецтехнику] (из-за ограниченного пространства);
+                      li #[strong Организовали параллельную вывозку древесины] для ускорения процесса.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (с учетом сложного рельефа)
+                    p #[strong Затраченное время:] Y часов (в режиме повышенной опасности)
+                    p #[strong Итог:] Угроза устранена без повреждения стройплощадки, территория полностью расчищена.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу удаления деревьев в канаве"
+                      itemprop="url"
+                    ) Заказать услугу
+                //- Блок картинок для мобильных устройств
+                .service-block__image-wrapper.service-block__image-wrapper--mobile
+                  figure.service-block__image-inner.service-block__image-inner--mobile(aria-label="Фотографии выполненных работ (мобильная версия)")
+                    each img, index in [1, 2, 3, 4]
+                      .service-block__image.service-block__image--mobile
+                        img.service-block__img.service-block__img--mobile(
+                          src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                          alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                          loading="lazy"
+                          width="300"
+                          height="300"
+                        )
+              
+              button.service-block__arrow.service-block__arrow--down.active(
+                aria-label="Следующий кейс"
+                data-block-index="0"
+              )
+            
+            //- Блок "Спил частями"
+            section.service-block(
+              id="service-parts"
+              role="tabpanel"
+              aria-labelledby="service-parts"
+              tabindex="-1"
+              itemprop="hasOfferCatalog"
+              itemscope
+              itemtype="https://schema.org/OfferCatalog"
+            )
+              button.service-block__arrow.service-block__arrow--up(
+                aria-label="Предыдущий кейс"
+                data-block-index="1"
+              )
+              
+              //- Первый кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                //- Блок картинок для десктоп
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2, 3, 4]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                //- Текстовый блок
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") 2Удаление аварийной, вывернутой с корня крупной березы, застрявшей прямо над крышей дома соседей. Была удалена без повреждения имущества.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты оперативно ликвидировали сложный случай — #[strong крупную березу, вывернутую с корнями ураганом], которая зависла над крышей жилого дома. Дерево находилось в крайне неустойчивом положении: его падение могло повредить кровлю, электропроводку и припаркованные автомобили. Мы:
+                    ul
+                      li #[strong Разработали поэтапный план] с учетом рисков;
+                      li #[strong Применили метод контролируемого спиливания] с завешиванием ветвей;
+                      li #[strong Использовали автовышку и альпинистское оборудование] для точной работы;
+                      li #[strong Аккуратно утилизировали ствол и ветви] без повреждения имущества.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (включена аренда спецтехники и утилизация)
+                    p #[strong Затраченное время:] Y часов (с учетом сложного доступа)
+                    p #[strong Итог:] Дерево удалено безопасно, соседские постройки сохранены.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу спила целиком"
+                      itemprop="url"
+                    ) Заказать услугу
+                
+                //- Блок картинок для мобильных устройств
+                figure.service-block__image-inner.service-block__image-inner--mobile.inactive(aria-label="Фотографии выполненных работ (мобильная версия)")
+                  each img, index in [1, 2, 3, 4]
+                    .service-block__image.service-block__image--mobile
+                      img.service-block__img.service-block__img--mobile(
+                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                      )
+              
+              //- Второй кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/second/${index + 1}.jpeg`
+                        alt=`Пример удаления деревьев в канаве шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") Удаление аварийных деревьев в канаве, получивших уклон на строящийся дом после оборудования канавы в близи их корней.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты выполнили #[strong срочное удаление деревьев], которые стали опасными после работ по обустройству дренажной канавы. Корневая система была повреждена, что вызвало критический наклон стволов в сторону строящегося дома. Для решения проблемы мы:
+                    ul
+                      li #[strong Провели экспертизу устойчивости] каждого дерева;
+                      li #[strong Применили комбинированную методику] – спил частями с контролируемым опусканием ветвей;
+                      li #[strong Использовали малую спецтехнику] (из-за ограниченного пространства);
+                      li #[strong Организовали параллельную вывозку древесины] для ускорения процесса.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (с учетом сложного рельефа)
+                    p #[strong Затраченное время:] Y часов (в режиме повышенной опасности)
+                    p #[strong Итог:] Угроза устранена без повреждения стройплощадки, территория полностью расчищена.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу удаления деревьев в канаве"
+                      itemprop="url"
+                    ) Заказать услугу
+              
+              //- Третий кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2, 3, 4, 5]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/third/${index + 1}.jpeg`
+                        alt=`Пример ликвидации последствий шторма шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") Ликвидация последствий шторма: удалены аварийные деревьев, повредившие забор и кровлю дома
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p После сильного шторма #[strong крупные деревья обрушились на частные владения], повредив забор и кровлю жилого дома. Наши специалисты оперативно:
+                    ul
+                      li #[strong Оценили масштаб разрушений] и риски дальнейшего обрушения;
+                      li #[strong Аккуратно распилили стволы] частями с контролируемым спуском (чтобы не усугубить повреждения);
+                      li #[strong Демонтировали застрявшие в крыше ветви] без дополнительного ущерба;
+                      li #[strong Организовали вывоз древесины] и очистку территории;
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (включен срочный выезд и утилизация)
+                    p #[strong Затраченное время:] Y часов (работы велись в режиме ЧС)
+                    p #[strong Итог:] Угроза устранена, владельцы смогли начать ремонт повреждений.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу ликвидации последствий шторма"
+                      itemprop="url"
+                    ) Заказать услугу
+              
+              button.service-block__arrow.service-block__arrow--down.active(
+                aria-label="Следующий кейс"
+                data-block-index="1"
+              )
+              
+            //- Блок "Спил аварийных"
+            section.service-block(
+              id="service-emergency"
+              role="tabpanel"
+              aria-labelledby="tab-emergency"
+              tabindex="-1"
+              itemprop="hasOfferCatalog"
+              itemscope
+              itemtype="https://schema.org/OfferCatalog"
+            )
+              button.service-block__arrow.service-block__arrow--up(
+                aria-label="Предыдущий кейс"
+                data-block-index="2"
+              )
+              
+              //- Первый кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                //- Блок картинок для десктоп
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2, 3, 4]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                //- Текстовый блок
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") 3Удаление аварийной, вывернутой с корня крупной березы, застрявшей прямо над крышей дома соседей. Была удалена без повреждения имущества.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты оперативно ликвидировали сложный случай — #[strong крупную березу, вывернутую с корнями ураганом], которая зависла над крышей жилого дома. Дерево находилось в крайне неустойчивом положении: его падение могло повредить кровлю, электропроводку и припаркованные автомобили. Мы:
+                    ul
+                      li #[strong Разработали поэтапный план] с учетом рисков;
+                      li #[strong Применили метод контролируемого спиливания] с завешиванием ветвей;
+                      li #[strong Использовали автовышку и альпинистское оборудование] для точной работы;
+                      li #[strong Аккуратно утилизировали ствол и ветви] без повреждения имущества.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (включена аренда спецтехники и утилизация)
+                    p #[strong Затраченное время:] Y часов (с учетом сложного доступа)
+                    p #[strong Итог:] Дерево удалено безопасно, соседские постройки сохранены.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу удаления аварийных деревьев"
+                      itemprop="url"
+                    ) Заказать услугу
+                
+                //- Блок картинок для мобильных устройств
+                figure.service-block__image-inner.service-block__image-inner--mobile.inactive(aria-label="Фотографии выполненных работ (мобильная версия)")
+                  each img, index in [1, 2, 3, 4]
+                    .service-block__image.service-block__image--mobile
+                      img.service-block__img.service-block__img--mobile(
+                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                      )
+              
+              //- Второй кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/second/${index + 1}.jpeg`
+                        alt=`Пример удаления деревьев в канаве шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") Удаление аварийных деревьев в канаве, получивших уклон на строящийся дом после оборудования канавы в близи их корней.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты выполнили #[strong срочное удаление деревьев], которые стали опасными после работ по обустройству дренажной канавы. Корневая система была повреждена, что вызвало критический наклон стволов в сторону строящегося дома. Для решения проблемы мы:
+                    ul
+                      li #[strong Провели экспертизу устойчивости] каждого дерева;
+                      li #[strong Применили комбинированную методику] – спил частями с контролируемым опусканием ветвей;
+                      li #[strong Использовали малую спецтехнику] (из-за ограниченного пространства);
+                      li #[strong Организовали параллельную вывозку древесины] для ускорения процесса.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (с учетом сложного рельефа)
+                    p #[strong Затраченное время:] Y часов (в режиме повышенной опасности)
+                    p #[strong Итог:] Угроза устранена без повреждения стройплощадки, территория полностью расчищена.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу удаления деревьев в канаве"
+                      itemprop="url"
+                    ) Заказать услугу
+              
+              //- Третий кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2, 3, 4, 5]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/third/${index + 1}.jpeg`
+                        alt=`Пример ликвидации последствий шторма шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") Ликвидация последствий шторма: удалены аварийные деревьев, повредившие забор и кровлю дома
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p После сильного шторма #[strong крупные деревья обрушились на частные владения], повредив забор и кровлю жилого дома. Наши специалисты оперативно:
+                    ul
+                      li #[strong Оценили масштаб разрушений] и риски дальнейшего обрушения;
+                      li #[strong Аккуратно распилили стволы] частями с контролируемым спуском (чтобы не усугубить повреждения);
+                      li #[strong Демонтировали застрявшие в крыше ветви] без дополнительного ущерба;
+                      li #[strong Организовали вывоз древесины] и очистку территории;
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (включен срочный выезд и утилизация)
+                    p #[strong Затраченное время:] Y часов (работы велись в режиме ЧС)
+                    p #[strong Итог:] Угроза устранена, владельцы смогли начать ремонт повреждений.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу ликвидации последствий шторма"
+                      itemprop="url"
+                    ) Заказать услугу
+              
+              button.service-block__arrow.service-block__arrow--down.active(
+                aria-label="Следующий кейс"
+                data-block-index="2"
+              )
+            
+            //- Блок "Удаление рухнувших"
+            section.service-block(
+              id="service-fallen"
+              role="tabpanel"
+              aria-labelledby="tab-fallen"
+              tabindex="-1"
+              itemprop="hasOfferCatalog"
+              itemscope
+              itemtype="https://schema.org/OfferCatalog"
+            )
+              button.service-block__arrow.service-block__arrow--up(
+                aria-label="Предыдущий кейс"
+                data-block-index="3"
+              )
+              
+              //- Первый кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                //- Блок картинок для десктоп
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2, 3, 4]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                //- Текстовый блок
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") 4Удаление аварийной, вывернутой с корня крупной березы, застрявшей прямо над крышей дома соседей. Была удалена без повреждения имущества.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты оперативно ликвидировали сложный случай — #[strong крупную березу, вывернутую с корнями ураганом], которая зависла над крышей жилого дома. Дерево находилось в крайне неустойчивом положении: его падение могло повредить кровлю, электропроводку и припаркованные автомобили. Мы:
+                    ul
+                      li #[strong Разработали поэтапный план] с учетом рисков;
+                      li #[strong Применили метод контролируемого спиливания] с завешиванием ветвей;
+                      li #[strong Использовали автовышку и альпинистское оборудование] для точной работы;
+                      li #[strong Аккуратно утилизировали ствол и ветви] без повреждения имущества.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (включена аренда спецтехники и утилизация)
+                    p #[strong Затраченное время:] Y часов (с учетом сложного доступа)
+                    p #[strong Итог:] Дерево удалено безопасно, соседские постройки сохранены.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу удаления аварийных деревьев"
+                      itemprop="url"
+                    ) Заказать услугу
+                
+                //- Блок картинок для мобильных устройств
+                figure.service-block__image-inner.service-block__image-inner--mobile.inactive(aria-label="Фотографии выполненных работ (мобильная версия)")
+                  each img, index in [1, 2, 3, 4]
+                    .service-block__image.service-block__image--mobile
+                      img.service-block__img.service-block__img--mobile(
+                        src=`../images-min/service/cutting/emergency/first/${index + 1}.jpeg`
+                        alt=`Пример удаления аварийной березы шаг ${index + 1}`
+                        loading="lazy"
+                        width="300"
+                        height="300"
+                      )
+              
+              //- Второй кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/second/${index + 1}.jpeg`
+                        alt=`Пример удаления деревьев в канаве шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") Удаление аварийных деревьев в канаве, получивших уклон на строящийся дом после оборудования канавы в близи их корней.
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p Наши специалисты выполнили #[strong срочное удаление деревьев], которые стали опасными после работ по обустройству дренажной канавы. Корневая система была повреждена, что вызвало критический наклон стволов в сторону строящегося дома. Для решения проблемы мы:
+                    ul
+                      li #[strong Провели экспертизу устойчивости] каждого дерева;
+                      li #[strong Применили комбинированную методику] – спил частями с контролируемым опусканием ветвей;
+                      li #[strong Использовали малую спецтехнику] (из-за ограниченного пространства);
+                      li #[strong Организовали параллельную вывозку древесины] для ускорения процесса.
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (с учетом сложного рельефа)
+                    p #[strong Затраченное время:] Y часов (в режиме повышенной опасности)
+                    p #[strong Итог:] Угроза устранена без повреждения стройплощадки, территория полностью расчищена.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу удаления деревьев в канаве"
+                      itemprop="url"
+                    ) Заказать услугу
+              
+              //- Третий кейс
+              article.service-block__wrapper(
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/Offer"
+              )
+                figure.service-block__image-inner(aria-label="Фотографии выполненных работ")
+                  each img, index in [1, 2, 3, 4, 5]
+                    .service-block__image
+                      img.service-block__img(
+                        src=`../images-min/service/cutting/emergency/third/${index + 1}.jpeg`
+                        alt=`Пример ликвидации последствий шторма шаг ${index + 1}`
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                        itemprop="image"
+                      )
+                
+                .service-block__inner
+                  h2.service-block__name(itemprop="name") Ликвидация последствий шторма: удалены аварийные деревьев, повредившие забор и кровлю дома
+                  
+                  .service-block__description-inner(itemprop="description")
+                    p После сильного шторма #[strong крупные деревья обрушились на частные владения], повредив забор и кровлю жилого дома. Наши специалисты оперативно:
+                    ul
+                      li #[strong Оценили масштаб разрушений] и риски дальнейшего обрушения;
+                      li #[strong Аккуратно распилили стволы] частями с контролируемым спуском (чтобы не усугубить повреждения);
+                      li #[strong Демонтировали застрявшие в крыше ветви] без дополнительного ущерба;
+                      li #[strong Организовали вывоз древесины] и очистку территории;
+                    p #[strong Стоимость:] #[span(itemprop="price") X] руб. (включен срочный выезд и утилизация)
+                    p #[strong Затраченное время:] Y часов (работы велись в режиме ЧС)
+                    p #[strong Итог:] Угроза устранена, владельцы смогли начать ремонт повреждений.
+                  
+                  .service-block__button-inner
+                    a.service-block__button.button(
+                      href="#"
+                      aria-label="Заказать услугу ликвидации последствий шторма"
+                      itemprop="url"
+                    ) Заказать услугу
+              
+              button.service-block__arrow.service-block__arrow--down.active(
+                aria-label="Следующий кейс"
+                data-block-index="3"
+              )
+    
+    +servicePopup  
+    script(src="../js-bundle/service.bundle.js" defer)
