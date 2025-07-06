@@ -1,7 +1,7 @@
 //- services.pug
 mixin services
     section.services(id="blockServices" itemscope itemtype="https://schema.org/Service")
-        h2.services__title(itemprop="name") Услуги
+        h2.services__title.title(itemprop="name") Услуги
         .services__inner
             each service in [{url: '../pages/cutting.html', img: 1, name: 'Спил деревьев'}, {url: '../pages/prunning.html', img: 2, name: 'Обрезка деревьев'}, {url: '#', img: 3, name: 'Расчистка участков'}, {url: '#', img: 4, name: 'Удаление пней'}, {url: '#', img: 5, name: 'Измельчение веток'}]
                 a.services-item(href=service.url itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/Offer")

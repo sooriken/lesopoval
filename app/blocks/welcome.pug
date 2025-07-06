@@ -19,24 +19,29 @@ mixin welcome
                 li(role="none")
                     a.welcome__nav-link(href="#blockFeedback" role="menuitem") Связь
         .welcome__inner(itemscope itemtype="https://schema.org/Organization")
-            h1.welcome__title(itemprop="name") Эксперты в лесных работах
-            p.welcome__subtitle(itemprop="description") Удаление, обрезка и утилизация деревьев с гарантией качества
-            .welcome__button-inner
-                a.welcome__button.button(href="#blockFeedback" role="button" aria-label="Рассчитать стоимость услуг") Рассчитать стоимость
+            .welcome__wrapper
+                h1.welcome__title.title(itemprop="name") Эксперты в лесных работах
+                p.welcome__subtitle(itemprop="description") Удаление, обрезка и утилизация деревьев с гарантией качества
+                .welcome__button-inner
+                    a.welcome__button.button(href="#blockFeedback" role="button" aria-label="Рассчитать стоимость услуг") Рассчитать стоимость
             .welcome__tabs
                 .welcome__tab-inner
                     .welcome__tab-number 8 лет
-                    .welcome__tab-text опыта
+                    .welcome__tab-wrapper
+                        .welcome__tab-text опыта
                 .welcome__tab-inner
                     .welcome__tab-number 200+
-                    .welcome__tab-text постоянных
-                    .welcome__tab-text клиентов
+                    .welcome__tab-wrapper
+                        .welcome__tab-text постоянных
+                        .welcome__tab-text клиентов
                 .welcome__tab-inner
                     .welcome__tab-number 150+ 
-                    .welcome__tab-text новых клиентов
-                    .welcome__tab-text ежегодно
+                    .welcome__tab-wrapper
+                        .welcome__tab-text новых клиентов
+                        .welcome__tab-text ежегодно
                 .welcome__tab-inner
                     .welcome__tab-number 4000+
-                    .welcome__tab-text обработанных
-                    .welcome__tab-text деревьев
+                    .welcome__tab-wrapper
+                        .welcome__tab-text обработанных
+                        .welcome__tab-text деревьев
                 

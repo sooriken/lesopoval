@@ -1,9 +1,9 @@
-//- reviews.pug
 mixin reviews
     section.reviews
-        .reviews__title отзывы о нашей работе
+        .reviews__title.title отзывы о нашей работе
         .reviews__inner
-            .reviews__item
+            //- Отзыв 1 (короткий)
+            .reviews__item.reviews__item--short
                 .reviews__header
                     .reviews__header-logo
                         img(src=`https://lipsum.app/id/5/64x64` loading="lazy" width="64" height="64" itemprop="image")
@@ -11,16 +11,68 @@ mixin reviews
                 .reviews__rate-inner
                     .reviews__rate
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                     .reviews__rate-date 8 августа 2021
-                .reviews__text Ребята огонь! Четко, быстро, слаженно делают своё дело! Молодцы👏👏👏 будем рекомендовать, позовём ещё!
+                .reviews__text Ребята огонь! Четко, быстро, слаженно делают своё дело!
+
+            //- Отзыв 2 (длинный с изображениями)
+            .reviews__item.reviews__item--tall
+                .reviews__header
+                    .reviews__header-logo
+                        img(src=`https://lipsum.app/id/6/64x64` loading="lazy" width="64" height="64" itemprop="image")
+                    .reviews__header-name Иван Петров
+                .reviews__rate-inner
+                    .reviews__rate
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                    .reviews__rate-date 15 сентября 2021
+                .reviews__text Очень доволен работой! Качественно, профессионально и в срок. Отдельное спасибо за внимательное отношение к деталям. Команда настоящих профессионалов, которые знают своё дело. Рекомендую всем, кто ценит качество и надёжность.
                 .reviews__image-inner
                     .reviews__image
-                        img.reviews__img
-            .reviews__item
+                        img.reviews__img(src=`https://lipsum.app/id/5/1920x1080` alt="reviews" loading="lazy" width="200" height="200" itemprop="image")
+                        img.reviews__img(src=`https://lipsum.app/id/6/1920x1080` alt="reviews" loading="lazy" width="200" height="200" itemprop="image")
+            //- Отзыв 3 (длинный с изображениями)
+            .reviews__item.reviews__item--tall
+                .reviews__header
+                    .reviews__header-logo
+                        img(src=`https://lipsum.app/id/6/64x64` loading="lazy" width="64" height="64" itemprop="image")
+                    .reviews__header-name Иван Петров
+                .reviews__rate-inner
+                    .reviews__rate
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                        .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
+                    .reviews__rate-date 15 сентября 2021
+                .reviews__text Очень доволен работой! Качественно, профессионально и в срок. Отдельное спасибо за внимательное отношение к деталям. Команда настоящих профессионалов, которые знают своё дело. Рекомендую всем, кто ценит качество и надёжность.
+                .reviews__image-inner
+                    .reviews__image
+                        img.reviews__img(src=`https://lipsum.app/id/5/1920x1080` alt="reviews" loading="lazy" width="200" height="200" itemprop="image")
+                        img.reviews__img(src=`https://lipsum.app/id/6/1920x1080` alt="reviews" loading="lazy" width="200" height="200" itemprop="image")
+            //- Отзыв 4 (короткий)
+            .reviews__item.reviews__item--short
                 .reviews__header
                     .reviews__header-logo
                         img(src=`https://lipsum.app/id/5/64x64` loading="lazy" width="64" height="64" itemprop="image")
@@ -28,30 +80,17 @@ mixin reviews
                 .reviews__rate-inner
                     .reviews__rate
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon--active.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                         .reviews__rate-star
+                            img(src=`../images-min/reviews/reviews-icon.svg` alt=`Иконка звезды` width="32" height="32" loading="lazy")
                     .reviews__rate-date 8 августа 2021
                 .reviews__text Ребята огонь! Четко, быстро, слаженно делают своё дело! Молодцы👏👏👏 будем рекомендовать, позовём ещё!
-                .reviews__image-inner
-                    .reviews__image
-                        img.reviews__img
-            .reviews__item
-                .reviews__header
-                    .reviews__header-logo
-                    .reviews__header-name
-                .reviews__rate-inner
-                    .reviews__rate
-                        .reviews__rate-star
-                        .reviews__rate-star
-                        .reviews__rate-star
-                        .reviews__rate-star
-                        .reviews__rate-star
-                    .reviews__rate-date
-                .reviews__text 
-                .reviews__image-inner
-                    .reviews__image
-                        img.reviews__img
             
-            
+
+            //- Добавьте остальные отзывы по аналогии с классами --short или --tall

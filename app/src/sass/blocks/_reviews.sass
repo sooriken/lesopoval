@@ -1,20 +1,88 @@
 .reviews
-    padding: 16px 160px
-    &__title
-        font-size: 2.618rem
+    padding: 80px 160px
     &__inner
         display: grid
         grid-template-columns: repeat(2, 1fr)
+        grid-auto-flow: dense
         gap: 32px
-        margin-top: 32px
+        margin-top: 64px
+        align-items: start
     &__item
-        margin-top: 32px
         padding: 16px
+        cursor: pointer
+        transition: all 0.3s ease
+        position: relative
+        &:hover
+            transform: scale(1.02)
+        &::before
+            content: ''
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            background: rgba(255,255,255,0.05)
+            opacity: 0
+            transition: opacity 0.3s ease
+            border-radius: inherit
+        &:hover::before
+            opacity: 1
+        &--short
+            grid-row: span 1
+        &--tall
+            grid-row: span 2
+        
     &__header
         display: flex
         &-logo
-            margin-right: 32px
+            margin-right: 16px
             & > img
                 border-radius: 50%
+                height: 48px
+                width: 48px
         &-name
-            line-height: 64px
+            line-height: 48px
+            font-size: 1.618rem
+    &__rate
+        display: flex
+        padding-left: 64px
+        &-inner
+            margin-top: 16px
+            display: flex
+        &-star
+            margin-right: 8px
+            & > img
+                width: 16px
+                height: 16px
+        &-date
+            line-height: 16px
+            margin-left: 8px
+    &__text
+        margin-top: 16px
+        font-size: 1.618rem
+        line-height: 1.4
+        padding-left: 64px
+    &__image
+        padding-left: 64px
+        margin-top: 16px
+        display: flex
+        flex-wrap: wrap
+        gap: 8px
+    &__img
+        width: 80px
+        height: 80px
+        object-fit: cover
+        //border-radius: 4px
+
+@media (max-width: 1200px)
+    .reviews
+        padding: 60px 80px
+
+@media (max-width: 768px)
+    .reviews
+        padding: 40px 20px
+        &__inner
+            grid-template-columns: 1fr
+        &__item
+            &--short, &--tall
+                grid-row: span 1

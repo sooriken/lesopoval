@@ -78,6 +78,16 @@ html
     +respond-to(xlarge)
         max-width: 1800px
 
+        // Мобильное меню
+.mobile-menu
+    display: none
+    +respond-to(small)
+        top: 16px
+        right: 16px
+    +respond-to(xsmall)
+        top: 12px
+        right: 12px
+        
 .mobile-menu
     +respond-to(tablet)
         display: flex
@@ -85,6 +95,11 @@ html
         justify-content: space-between
         width: 32px
         height: 24px
+        display: block
+        position: fixed
+        top: 20px
+        right: 20px
+        z-index: 1000
     
     &__line
         display: block
@@ -107,6 +122,22 @@ html
                 opacity: 0 
             &:nth-child(3)
                 transform: translateY(-8px) rotate(-45deg)
+
+.welcome__nav-links
+    +respond-to(medium)
+        display: none
+        position: fixed
+        top: 0
+        left: 0
+        width: 100%
+        height: 100vh
+        background: $colorMain
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        &.active
+            display: flex
+            
 .welcome__nav-links
     +respond-to(tablet)
         display: none
@@ -132,6 +163,8 @@ html
             padding: 10px 20px
             &::after
                 display: none
+            
+
             
 // Welcome блок
 .welcome
@@ -494,33 +527,432 @@ html
             width: 24px
             height: 24px
 
-// Мобильное меню
-.mobile-menu
-    display: none
-    +respond-to(medium)
-        display: block
-        position: fixed
-        top: 20px
-        right: 20px
-        z-index: 1000
-    +respond-to(small)
-        top: 16px
-        right: 16px
-    +respond-to(xsmall)
-        top: 12px
-        right: 12px
+// service страницы
+.service
+    // welcome
+    &__welcome
+        width: 100%
+        height: calc(100vh - 80px)
+        background-image: url(../../images-min/welcome/welcome.png) 
+        background-size: cover
+        display: flex
+        flex-direction: column
+        justify-content: center
+        
+        +respond-to(xlarge)
+            padding: 0 200px
+        
+        +respond-to(large)
+            padding: 0 160px
+        
+        +respond-to(desktop)
+            height: auto
+            padding: 120px 60px
+        
+        +respond-to(tablet)
+            padding: 100px 40px
+            background-position: center
+        
+        +respond-to(medium)
+            padding: 80px 20px
+        
+        +respond-to(small)
+            padding: 60px 16px
+        
+        &-title
+            margin: 0 auto
+            position: relative
+            margin-top: 0
+            
+            +respond-to(tablet)
+                font-size: 2.5rem
+            
+            +respond-to(medium)
+                font-size: 2rem
+                text-align: center
+        
+        &-subtitle
+            margin: 16px auto 64px
+            font-size: 1rem
+            position: relative
+            
+            +respond-to(tablet)
+                margin-bottom: 48px
+                text-align: center
+            
+            +respond-to(medium)
+                margin-bottom: 32px
+                font-size: 0.9rem
+    
+    // info
+    &__info
+        padding: 80px 160px
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        gap: 32px
+        
+        +respond-to(large)
+            padding: 80px 120px
+        
+        +respond-to(desktop)
+            padding: 60px 80px
+        
+        +respond-to(tablet)
+            grid-template-columns: 1fr
+            padding: 50px 40px
+            gap: 24px
+        
+        +respond-to(medium)
+            padding: 40px 20px
+        
+        +respond-to(small)
+            padding: 32px 16px
+    
+    &-info
+        &__images-inner
+            position: relative
+            
+            +respond-to(tablet)
+                order: -1
+                margin-bottom: 24px
+        
+        &__image
+            width: 100%
+            height: auto
+            position: relative
+            aspect-ratio: 16 / 9
+            overflow: hidden
+        
+        &__img
+            position: absolute
+            width: 100%
+            height: auto
+        
+        &__arrow 
+            position: absolute
+        
+        &__text
+            display: flex
+            flex-direction: column
+            justify-content: center
+            height: 100%
+            
+            +respond-to(tablet)
+                height: auto
+            
+            &--right
+                text-align: right
+                
+                +respond-to(tablet)
+                    text-align: left
+                
+                & > .service-info__title
+                    text-align: end !important
+                    
+                    +respond-to(tablet)
+                        text-align: start !important
+        
+        &__title
+            text-align: start !important
+            
+            +respond-to(tablet)
+                font-size: 2rem
+            
+            +respond-to(medium)
+                font-size: 1.8rem
+        
+        &__description
+            flex-grow: 1
+            
+            +respond-to(tablet)
+                font-size: 1rem
+    
+    // include 
+    &__include
+        padding: 80px 160px
+        min-height: 100vh
+        display: flex
+        flex-direction: column
+        justify-content: center
+        background-repeat: no-repeat
+        background-image: url(../../images-min/welcome/welcome.png)
+        background-position: center
+        background-size: cover
+        
+        +respond-to(large)
+            padding: 80px 120px
+        
+        +respond-to(desktop)
+            padding: 60px 80px
+            min-height: auto
+        
+        +respond-to(tablet)
+            padding: 50px 40px
+        
+        +respond-to(medium)
+            padding: 40px 20px
+        
+        +respond-to(small)
+            padding: 32px 16px
+    
+    &-include
+        &__title
+            text-align: start !important
+            
+            +respond-to(tablet)
+                font-size: 2.2rem
+            
+            +respond-to(medium)
+                font-size: 2rem
+        
+        &__item
+            font-size: 1.618rem
+            display: flex
+            line-height: 48px
+            margin-top: 64px
+            font-weight: bold
+            
+            +respond-to(desktop)
+                font-size: 1.5rem
+                margin-top: 48px
+            
+            +respond-to(tablet)
+                font-size: 1.3rem
+                line-height: 40px
+                margin-top: 40px
+            
+            +respond-to(medium)
+                font-size: 1.1rem
+                line-height: 32px
+                margin-top: 32px
+            
+            &-number
+                margin-right: 32px
+                font-size: 2.618rem
+                
+                +respond-to(tablet)
+                    font-size: 2rem
+                    margin-right: 24px
+                
+                +respond-to(medium)
+                    font-size: 1.8rem
+                    margin-right: 16px
+        
+        &__remark
+            margin-top: 64px
+            font-weight: bold
+            
+            +respond-to(tablet)
+                margin-top: 48px
+                font-size: 1rem
+            
+            +respond-to(medium)
+                margin-top: 32px
+        
+        &__button
+            margin-top: 32px
+            
+            +respond-to(medium)
+                margin-top: 24px
+                width: 100%
+    
+    // stage
+    &__stage
+        +respond-to(large)
+            padding: 80px 120px
+        
+        +respond-to(desktop)
+            padding: 60px 80px
+        
+        +respond-to(tablet) 
+            padding: 50px 40px
+        
+        +respond-to(medium)
+            padding: 40px 20px
+        
+        +respond-to(small)
+            padding: 32px 16px
 
-.welcome__nav-links
-    +respond-to(medium)
-        display: none
+    
+    // popup
+    &-popup
         position: fixed
         top: 0
         left: 0
         width: 100%
-        height: 100vh
-        background: $colorMain
-        flex-direction: column
-        align-items: center
-        justify-content: center
+        height: 100%
+        z-index: 20
+        backdrop-filter: blur(20px)
+        display: none
+        opacity: 0
+        transition: all .4s linear
+        
+        +respond-to(tablet)
+            padding: 40px
+        
+        +respond-to(medium)
+            padding: 20px
+        
+        &__background
+            width: 100%
+            height: 100%
+        
+        &__inner
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            padding: 40px
+            
+            +respond-to(tablet)
+                width: 90%
+                padding: 30px
+            
+            +respond-to(medium)
+                width: 95%
+                padding: 20px
+        
+        &__label
+            margin-bottom: 8px
+            display: block
+            cursor: pointer
+        
+        &__form
+            margin-bottom: 16px
+            &:last-child
+                margin-bottom: 0
+            
+            &-group
+                margin-bottom: 16px
+        
+        &__button
+            margin: 0 auto
+            
+            +respond-to(medium)
+                width: 100%
+        
         &.active
+            display: block
+        
+        &.fade-in
+            opacity: 1
+            
+// service nav
+.services
+    &-nav
+        padding: 16px 160px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        font-weight: bold
+        text-transform: uppercase
+        font-size: 1.618rem
+        
+        +respond-to(large)
+            padding: 16px 120px
+        
+        +respond-to(desktop)
+            padding: 16px 80px
+            font-size: 1.5rem
+        
+        +respond-to(tablet)
+            padding: 16px 40px
+            flex-wrap: wrap
+            font-size: 1.3rem
+        
+        +respond-to(medium)
+            padding: 16px 20px
+            font-size: 1.1rem
+        
+        +respond-to(small)
+            padding: 12px 16px
+            font-size: 1rem
+        
+        &__inner
             display: flex
+            align-items: center
+            
+            +respond-to(tablet)
+                width: 100%
+                justify-content: space-between
+                margin-bottom: 16px
+        
+        &__logo
+            width: 48px
+            height: 48px
+            border-radius: 50%
+            margin-right: 48px
+            flex-shrink: 0
+            
+            +respond-to(desktop)
+                margin-right: 32px
+            
+            +respond-to(tablet)
+                margin-right: 0
+                width: 40px
+                height: 40px
+            
+            +respond-to(medium)
+                width: 36px
+                height: 36px
+            
+            & > img 
+                width: 100%
+                height: 100%
+                object-fit: contain
+        
+        &__phone
+            line-height: 48px
+            white-space: nowrap
+            
+            +respond-to(tablet)
+                line-height: 40px
+            
+            +respond-to(medium)
+                line-height: 36px
+        
+        &__links
+            display: flex
+            
+            +respond-to(tablet)
+                width: 100%
+                justify-content: center
+            
+            +respond-to(medium)
+                justify-content: space-between
+        
+        &__link
+            margin-left: 32px
+            line-height: 48px
+            position: relative
+            white-space: nowrap
+            
+            +respond-to(desktop)
+                margin-left: 24px
+                line-height: 40px
+            
+            +respond-to(tablet)
+                margin: 0 16px
+                line-height: 36px
+            
+            +respond-to(medium)
+                margin: 0 8px
+                font-size: 0.9rem
+            
+            +respond-to(small)
+                margin: 0 4px
+            
+            &::after
+                content: ""
+                display: block
+                width: 100%
+                height: 2px
+                position: absolute
+                left: 50%
+                transform: translateX(-50%)
+                bottom: 0px
+                width: 0
+                transition: .3s linear
+            
+            &:hover::after
+                width: 100%

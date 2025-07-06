@@ -1,18 +1,17 @@
-.service    
+.service
+    // welcome
     &__welcome
         width: 100%
         height: calc(100vh - 80px)
         background-image: url(../../images-min/welcome/welcome.png) 
+        background-size: cover
         display: flex
         flex-direction: column
         justify-content: center
         &-title
             margin: 0 auto
-            font-size: 2.618rem 
-            font-weight: bold
             position: relative
             margin-top: 0    
-            text-transform: uppercase
             //mix-blend-mode: difference
         &-subtitle
             margin: 16px auto 64px
@@ -20,6 +19,105 @@
             position: relative
             //mix-blend-mode: screen
             //z-index: 20
+    // info
+    &__info
+        padding: 80px 160px
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        gap: 32px
+    &-info
+        &__images-inner
+            position: relative
+            display: flex
+            flex-direction: column
+            justify-content: center
+        &__image
+            width: 100%
+            height: auto
+            position: relative
+            aspect-ratio: 16 / 9
+            overflow: hidden
+        &__img
+            position: absolute
+            width: 100%
+            height: auto
+        &__arrow 
+            position: absolute
+        &__text
+            display: flex
+            flex-direction: column
+            justify-content: center
+            height: 100%
+            &--right
+                text-align: right
+                & > .service-info__title
+                    text-align: end !important
+        &__title
+            text-align: start !important
+        &__description
+            flex-grow: 1
+            margin-top: 40px
+            display: flex
+            flex-direction: column
+            justify-content: center
+    // include 
+    &__include
+        padding: 80px 160px
+        min-height: 100vh
+        display: flex
+        flex-direction: column
+        justify-content: center
+        background-repeat: no-repeat
+        background-image: url(../../images-min/welcome/welcome.png)
+    &-include
+        &__title
+            text-align: start !important
+        &__item
+            font-size: 1.618rem
+            display: flex
+            line-height: 48px
+            margin-top: 64px
+            font-weight: bold
+            &-number
+                margin-right: 32px
+                font-size: 2.618rem
+        &__remark
+            margin-top: 64px
+            font-weight: bold
+        &__button
+            margin-top: 32px
+    // stage
+    &__stage
+        padding: 80px 160px
+        display: flex
+    &-stage
+        &__title
+            text-align: start !important
+        &__number
+            font-weight: bold
+            line-height: 48px
+            font-size: 2.618rem
+            margin-top: 32px
+            &:first-child
+                margin-top: 0
+        &__line
+            &-inner
+                min-width: 6px
+                margin: 0 32px
+                position: relative
+                border-radius: 8px
+            &--active
+                position: sticky
+                top: 400px
+                width: 6px
+                height: 48px
+                border-radius: 8px
+        &__text
+            line-height: 48px
+            font-size: 1.618rem
+            margin-top: 32px
+            &:first-child
+                margin-top: 0
     // popup
     &-popup
         position: absolute

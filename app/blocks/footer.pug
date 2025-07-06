@@ -1,9 +1,8 @@
-//- footer.pug
 mixin footer
     footer.footer(id="blockFooter" role="contentinfo" itemscope itemtype="https://schema.org/WPFooter")
         .footer__inner(itemscope itemtype="https://schema.org/Organization")
             a.footer__logo(href="/" aria-label="Логотип компании")
-                img(src="../images-min/logo/logo-main.png" alt="Логотип лесозаготовительной компании" width="32" height="32" loading="lazy" itemprop="logo")
+                img(src="../images-min/logo/logo-main.png" alt="Логотип лесозаготовительной компании" width="48" height="48" loading="lazy" itemprop="logo")
             address.footer__info(itemprop="address" itemscope itemtype="https://schema.org/PostalAddress")
                 a(href="tel:+71234567890" itemprop="telephone") +7(123)-456-78-90
         
@@ -15,4 +14,18 @@ mixin footer
                     target="_blank" 
                     rel="noopener noreferrer"
                 )
-                    img.footer__contact-img(src=`../images-min/social/${social}.svg` alt=`Иконка ${social}` width="24" height="24" loading="lazy")
+                    .footer__contact-img-wrapper
+                        img.footer__contact-img(
+                            src=`../images-min/social/${social}.svg` 
+                            alt=`Иконка ${social}` 
+                            width="48" 
+                            height="48" 
+                            loading="lazy"
+                        )
+                        img.footer__contact-img--hover(
+                            src=`../images-min/social/${social}--hover.svg` 
+                            alt=`Иконка ${social}` 
+                            width="48" 
+                            height="48" 
+                            loading="lazy"
+                        )

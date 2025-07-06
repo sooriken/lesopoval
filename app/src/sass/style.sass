@@ -13,7 +13,16 @@ $colorBrown: #A0522D
    
 .inactive
     display: none
-//welcome block
+
+// default styles
+.title
+    color: $colorMain
+    font-size: 2.618rem
+    font-weight: bold
+    text-transform: uppercase
+    font-family: "Montserrat", sans-serif
+    text-align: center
+// welcome block
 .welcome
     &__nav
         &-logo
@@ -38,8 +47,11 @@ $colorBrown: #A0522D
 
 //reviews block
 .reviews
+    background-color: $colorLight
+    color: $colorLight
     &__item
         border: 2px solid $colorMain
+        background-color: $colorMain
 
 //services block
 .services
@@ -126,6 +138,12 @@ $colorBrown: #A0522D
         &__arrow
             border-right: 2px solid $colorLight
             border-top: 2px solid $colorLight
+    &-stage
+        &__line
+            &-inner
+                background-color: $colorWhite
+            &--active
+                background-color: $colorGreen
     &-popup__inner
         background-color: $colorMain
         color: $colorLight

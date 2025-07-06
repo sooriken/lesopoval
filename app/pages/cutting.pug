@@ -25,13 +25,92 @@ html(lang="ru")
         
 body  
     .page(itemscope itemtype="https://schema.org/WebPage")
+        // навигация сервиса
         +servicesNav
         main.service(itemscope itemtype="https://schema.org/Service")
             .service__inner
+            
+                // welcome блок
                 .service__welcome
-                    .service__welcome-title Услуги по спиливанию деревьев
+                    .service__welcome-title.title Услуги по спиливанию деревьев
                     .service__welcome-subtitle Безопасное удаление деревьев любой сложности — быстро, чисто и без повреждений
                     .welcome__button-inner
                         a.welcome__button.button(href="#blockFeedback" role="button" aria-label="Рассчитать стоимость услуг") Рассчитать стоимость
+                        
+                // блок сервиса
+                .service__info
+                    .service-info__images-inner
+                        .service-info__arrow.service-info__arrow--left
+                        .service-info__image
+                            img.service-info__img(src="https://lipsum.app/id/6/1920x1080" alt="Пример наших работ" loading="lazy" width="1920" height="1080" itemprop="contentUrl")
+                        .service-info__arrow.service-info__arrow--right
+                    .service-info__text
+                        .service-info__title.title Обследование
+                        .service-info__description Обследование необходимо для своевременного выявления возможных структурных изъянов и болезней, определения состояния деревьев и степени риска, чтобы принять решение о сохранении или удалении определенных деревьев при строительстве и благоустройстве участка.
+                        
+                // блок сервиса
+                .service__info
+                    .service-info__text.service-info__text--right
+                        .service-info__title.title Обследование
+                        .service-info__description Обследование необходимо для своевременного выявления возможных структурных изъянов и болезней, определения состояния деревьев и степени риска, чтобы принять решение о сохранении или удалении определенных деревьев при строительстве и благоустройстве участка.
+                    .service-info__images-inner
+                        .service-info__arrow.service-info__arrow--left
+                        .service-info__image
+                            img.service-info__img(src="https://lipsum.app/id/6/1920x1080" alt="Пример наших работ" loading="lazy" width="1920" height="1080" itemprop="contentUrl")
+                        .service-info__arrow.service-info__arrow--right
+                        
+                // блок сервиса 
+                .service__info
+                    .service-info__images-inner
+                        .service-info__arrow.service-info__arrow--left
+                        .service-info__image
+                            img.service-info__img(src="https://lipsum.app/id/6/1920x1080" alt="Пример наших работ" loading="lazy" width="1920" height="1080" itemprop="contentUrl")
+                        .service-info__arrow.service-info__arrow--right
+                    .service-info__text
+                        .service-info__title.title Обследование
+                        .service-info__description Обследование необходимо для своевременного выявления возможных структурных изъянов и болезней, определения состояния деревьев и степени риска, чтобы принять решение о сохранении или удалении определенных деревьев при строительстве и благоустройстве участка.
+                
+                // блок что включает услуга
+                .service__include
+                    .service-include__title.title услуга включает в себя:
+                    .service-include__item
+                        .service-include__item-number 01
+                        .service-include__item-text Выезд специалиста
+                    .service-include__item
+                        .service-include__item-number 02
+                        .service-include__item-text Обследование насаждений
+                    .service-include__item
+                        .service-include__item-number 03
+                        .service-include__item-text Составление отчета
+                    .service-include__remark Стоимость услуги зависит от количества обследуемых деревьев и территориального расположения участка.
+                    .service-include__button-inner
+                        button.button.service-include__button рассчитать стоимость
+                        
+                // этапы работ
+                .service__stage
+                    .service-stage__title.title
+                    .service-stage__number-inner
+                        .service-stage__number 01
+                        .service-stage__number 02
+                        .service-stage__number 03 
+                        .service-stage__number 04 
+                        .service-stage__number 05
+                        .service-stage__number 06
+                        .service-stage__number 07
+                        .service-stage__number 08
+                    .service-stage__line-inner
+                        .service-stage__line
+                        .service-stage__line--active
+                    .service-stage__text-inner
+                        .service-stage__text Получаем вашу заявку и связываемся с вами
+                        .service-stage__text Выслушиваем проблему и изучаем фото/видео
+                        .service-stage__text Проводим консультацию с возможными решениями
+                        .service-stage__text Рассчитываем предварительную стоимость
+                        .service-stage__text Согласовываем дату и время работ
+                        .service-stage__text Выезжаем на объект
+                        .service-stage__text Выполняем все необходимые работы
+                        .service-stage__text Сдаем результат и принимаем оплату
+                        
+        // попап
         +servicePopup  
     script(src="../js-bundle/service.bundle.js" defer)

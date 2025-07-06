@@ -19,7 +19,7 @@ mixin about
                     p.about__description(itemprop="description")= desc
         
         section.about__inner(aria-label="Наши партнеры")
-            .about__item-title Наши партнёры:
+            .about__item-title.title Наши партнёры:
             .about__item.about__item--collab(itemscope itemtype="https://schema.org/Organization")
                 each partner in ['dvorets', 'gaz', 'igora', 'kolledj', 'lukoil', 'olymp-main', 'repino', 'rjd', 'sibur', 'stroi', 'tochka-main', 'vuoksa']
                     .about__collab(itemprop="brand" itemscope itemtype="https://schema.org/Organization")

@@ -14,7 +14,7 @@
         justify-content: space-between
         font-weight: bold
         text-transform: uppercase
-        font-size: 1.618rem 
+        font-size: 1rem 
         &-left
             display: flex
         &-logo
@@ -27,6 +27,7 @@
                 height: 48px
         &-phone
             line-height: 48px
+            font-size: 1.618rem
         &-links
             display: flex
             margin: 0
@@ -60,13 +61,16 @@
         flex-grow: 1
         text-align: center
         padding: 0 160px
+    &__wrapper
+        flex-grow: 1
+        display: flex
+        flex-direction: column
+        justify-content: center
+        margin-top: 160px
     &__title
-        font-size: 2.618rem 
-        font-weight: bold
         position: relative
-        margin-bottom: 16px 
+        margin-bottom: 32px 
         margin-top: 0    
-        text-transform: uppercase
         //mix-blend-mode: difference
     &__subtitle
         font-size: 1rem
@@ -82,12 +86,20 @@
     &__tabs
         display: flex
         margin: 64px auto 0
+        padding-bottom: 80px
     &__tab
         &-inner
             margin-right: 64px
         &-number
             font-size: 1.618rem
             font-weight: bold
-            padding-bottom: 16px
+            padding-bottom: 8px
+        &-wrapper
+            margin-top: 4px
         &-text
-            padding-top: 16px
+            padding-top: 4px
+// mobile menu
+.mobile-menu
+    background-color: transparent
+    border: none
+    outline: none
