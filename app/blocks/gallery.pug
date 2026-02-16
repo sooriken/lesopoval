@@ -1,10 +1,28 @@
-//- gallery.pug
 mixin gallery
     section.gallery(id="blockGallery" itemscope itemtype="https://schema.org/ImageGallery")
         h2.gallery__title.title Наши работы
         .gallery__inner
             button.gallery__arrow.gallery__arrow--left(aria-label="Предыдущее изображение")
-            figure.gallery__item(itemprop="image" itemscope itemtype="https://schema.org/ImageObject")
-                img.gallery__item-img(src="https://lipsum.app/id/6/1920x1080" alt="Пример наших работ" loading="lazy" width="800" height="450" itemprop="contentUrl")
-                figcaption.gallery__item-caption(itemprop="description") Профессиональный спил дерева
+            .gallery__slider-inner
+                .gallery__item-inner
+                    // item 1
+                    figure.gallery__item(itemprop="image" itemscope itemtype="https://schema.org/ImageObject")
+                        img.gallery__item-img(src="https://lipsum.app/id/1/1920x1080" alt="Пример наших работ" loading="lazy" width="800" height="450" itemprop="contentUrl")
+                        figcaption.gallery__item-caption(itemprop="description") Профессиональный спил дерева
+                    // item 2
+                    figure.gallery__item(itemprop="image" itemscope itemtype="https://schema.org/ImageObject")
+                        img.gallery__item-img(src="https://lipsum.app/id/2/1920x1080" alt="Пример наших работ" loading="lazy" width="800" height="450" itemprop="contentUrl")
+                        figcaption.gallery__item-caption(itemprop="description") Профессиональный спил дерева
+                    // item 3
+                    figure.gallery__item(itemprop="image" itemscope itemtype="https://schema.org/ImageObject")
+                        img.gallery__item-img(src="https://lipsum.app/id/3/1920x1080" alt="Пример наших работ" loading="lazy" width="800" height="450" itemprop="contentUrl")
+                        figcaption.gallery__item-caption(itemprop="description") Профессиональный спил дерева
+                    // item 4
+                    figure.gallery__item(itemprop="image" itemscope itemtype="https://schema.org/ImageObject")
+                        img.gallery__item-img(src="https://lipsum.app/id/4/1920x1080" alt="Пример наших работ" loading="lazy" width="800" height="450" itemprop="contentUrl")
+                        figcaption.gallery__item-caption(itemprop="description") Профессиональный спил дерева
+                    // item 5
+                    figure.gallery__item(itemprop="image" itemscope itemtype="https://schema.org/ImageObject")
+                        img.gallery__item-img(src="https://lipsum.app/id/5/1920x1080" alt="Пример наших работ" loading="lazy" width="800" height="450" itemprop="contentUrl")
+                        figcaption.gallery__item-caption(itemprop="description") Профессиональный спил дерева
             button.gallery__arrow.gallery__arrow--right(aria-label="Следующее изображение")

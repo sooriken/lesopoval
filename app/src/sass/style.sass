@@ -81,11 +81,14 @@ $colorBrown: #A0522D
     &__title
         color: $colorLight
     &__arrow
-        border-left: 2px solid $colorLight
-        border-top: 2px solid $colorLight
-        border-bottom: transparent
-        border-right: transparent
+        //border-left: 2px solid $colorLight
+        //border-top: 2px solid $colorLight
         background-color: transparent
+                
+        &::before
+            border: 2px solid $colorLight
+            border-left: none
+            border-bottom: none
 //feedback block
 .feedback
     color: $colorLight
@@ -146,4 +149,9 @@ $colorBrown: #A0522D
                 background-color: $colorGreen
     &-popup__inner
         background-color: $colorMain
-        color: $colorLight
+        color: $colorLight 
+
+// tooltip
+.tooltip
+    background: $colorGreen
+    color: $colorLight

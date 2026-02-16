@@ -1,30 +1,111 @@
 .gallery
     padding: 80px 160px
+    position: relative
+    overflow: hidden
+    
     &__title
         margin-bottom: 80px
         margin-top: 0
+        text-align: center
+    
     &__inner
         display: flex
+        align-items: center
         justify-content: space-between
+        position: relative
+    
     &__item
-        width: calc(100% - 160px)
+        display: block
+        flex: 0 0 auto
+        width: 100%
+        //max-width: 1200px
         margin: 0 auto
         aspect-ratio: 16 / 9
-        overflow: hidden
         position: relative
-        //border-radius: 16px
+        transition: transform 0.4s ease
+        
+        &-inner
+            display: flex
+            width: 100%
+            height: 100%
+            position: relative
+        
         &-img
             position: absolute
+            width: 100%
             height: 100%
-            width: auto
+            object-fit: cover
             top: 50%
             left: 50%
             transform: translate(-50%, -50%)
+        
+        &-caption
+            position: absolute
+            bottom: 0
+            left: 0
+            right: 0
+            background: rgba(0, 0, 0, 0.7)
+            color: white
+            padding: 16px
+            text-align: center
+            opacity: 0
+            transition: all 0.3s ease
+            font-size: 1.618rem
+        
+        &:hover &-caption
+            opacity: 1
+    
     &__arrow
-        margin: auto 0
-        width: 32px
-        height: 32px
-        transform: rotate(-45deg)
+        width: 60px
+        height: 60px
+        border: none
+        background: rgba(0, 0, 0, 0.5)
+        border-radius: 50%
         cursor: pointer
+        display: flex
+        align-items: center
+        justify-content: center
+        position: relative
+        z-index: 10
+        transition: background-color 0.3s ease
+        outline: none
+        background-color: transparent
+        border: none
+                
+        &::before
+            content: ''
+            width: 20px
+            height: 20px
+            transform: rotate(-45deg)
+        
+        &--left
+            &::before
+                transform: rotate(-135deg)
+                margin-right: -5px
+        
         &--right
-            transform: rotate(135deg)
+            &::before
+                transform: rotate(45deg)
+                margin-left: -5px
+
+
+.gallery
+    &__slider-inner
+        width: 100%
+        overflow: hidden
+        
+    &__item-inner
+        display: flex
+        width: 100%
+        height: 100%
+        position: relative
+        transition: transform 0.3s ease // Плавность анимации
+        transform: translateX(-150px)
+    
+    &__item
+        flex: 0 0 auto
+        width: 100%
+        aspect-ratio: 16 / 9
+        position: relative
+        // Убедитесь, что элементы не сжимаются
+        min-width: 100%
